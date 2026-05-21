@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creagh Law — Counsel that meets you outside business hours</title>
+<meta name="description" content="Tom Creagh — in-house counsel by trade, taking on business, technology, real estate, and wills matters outside business hours. Reasonable hourly rates or flat fees where they make sense.">
+
+<!-- Open Graph / link previews (used when the URL is shared in iMessage, email, LinkedIn, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creagh Law — Counsel that meets you outside business hours">
+<meta property="og:description" content="In-house counsel by trade. An off-hours practice for business, technology, real estate, and wills matters — reasonable hourly rates or flat fees.">
+<meta property="og:url" content="https://creagh.law">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon: replace with your own once uploaded to GitHub; falls back to the wordmark mark otherwise -->
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/favicon.png">
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/apple-touch-icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --brand-blue: #064059;
+    --brand-orange: #E57520;
+    --orange-dark: #C7621A;
+    --orange-200: #F1BC85;
+    --paper: #FBFAF7;
+    --bone: #F4F2EC;
+    --ink-900: #0E1518;
+    --ink-700: #2A3438;
+    --ink-500: #54616A;
+    --ink-100: #DDE1E4;
+    --border-warm: #E9E6DC;
+    --blue-tint: #EEF3F8;
+    --blue-border: #A8C0D5;
+    --easing: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: auto; } /* JS handles smooth scroll; this avoids double-easing */
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink-700);
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Sticky nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 250, 247, 0.94);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border-warm);
+  }
+  .nav__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .nav__brand {
+    display: inline-block;
+    line-height: 0;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 520ms var(--easing), transform 520ms var(--easing);
+    pointer-events: none;
+  }
+  body.is-past-hero .nav__brand {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav__brand img { height: 22px; display: block; }
+  .nav__links { display: flex; gap: 18px; }
+  .nav__links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-700);
+    text-decoration: none;
+    transition: color 160ms var(--easing);
+  }
+  .nav__links a:hover { color: var(--brand-blue); }
+  @media (max-width: 480px) {
+    .nav__links a:nth-child(n+3) { display: none; }
+  }
+
+  /* ---------- Shared band + inner ---------- */
+  .band { width: 100%; }
+  .inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    margin: 0 0 18px;
+  }
+  .h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink-900);
+    margin: 0 0 16px;
+  }
+  .lead {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-700);
+    margin: 0 0 32px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 160ms var(--easing), border-color 160ms var(--easing),
+                transform 160ms var(--easing), box-shadow 160ms var(--easing);
+  }
+  .btn--accent { background: var(--brand-orange); color: #fff; }
+  .btn--accent:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(6, 64, 89, 0.07); }
+  .btn--secondary { background: #fff; color: var(--brand-blue); border-color: var(--blue-border); }
+  .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  /* ---------- Hero ---------- */
+  .hero { background: var(--paper); }
+  .hero .inner { padding-top: 72px; padding-bottom: 88px; }
+  .hero__wm {
+    display: block;
+    margin: 0 auto 56px;
+    height: clamp(60px, 11vw, 92px);
+    width: auto;
+  }
+  .hero h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: clamp(34px, 6.4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink-900);
+    margin: 0 0 20px;
+  }
+  .accent {
+    color: var(--brand-blue);
+    white-space: nowrap;
+    box-shadow: inset 0 -0.18em 0 0 var(--orange-200);
+  }
+  /* On narrow screens the phrase is wider than the viewport; allow it to wrap
+     rather than force horizontal scroll. The underline simply follows each line. */
+  @media (max-width: 420px) {
+    .accent { white-space: normal; }
+  }
+  .hero .lead { margin-left: auto; margin-right: auto; max-width: 520px; }
+  .stamps {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--ink-500);
+  }
+  .stamps span { display: inline-flex; align-items: center; gap: 6px; }
+  .stamps svg { color: var(--brand-orange); }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    text-align: left;
+  }
+  .service {
+    background: #fff;
+    border: 1px solid var(--border-warm);
+    border-radius: 12px;
+    padding: 22px 20px;
+    transition: box-shadow 180ms var(--easing), transform 180ms var(--easing), border-color 180ms var(--easing);
+  }
+  .service:hover {
+    box-shadow: 0 6px 16px rgba(6, 64, 89, 0.09);
+    transform: translateY(-2px);
+    border-color: var(--blue-border);
+  }
+  .service__icon {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: var(--blue-tint);
+    color: var(--brand-blue);
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+  }
+  .service__icon svg { width: 18px; height: 18px; }
+  .service h3 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--brand-blue);
+    margin: 0 0 6px;
+  }
+  .service p { font-size: 14px; line-height: 1.5; color: var(--ink-700); margin: 0; }
+  @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- How it works ---------- */
+  .principles { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 8px; }
+  .principle {
+    background: #fff;
+    border: 1px solid var(--border-warm);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .principle__num {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    background: var(--brand-blue);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+  .principle h3 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--brand-blue);
+    margin: 0 0 4px;
+  }
+  .principle p { font-size: 14.5px; line-height: 1.55; color: var(--ink-700); margin: 0; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { display: flex; flex-direction: column; gap: 8px; text-align: left; margin-top: 8px; }
+  .faq-list details {
+    background: #fff;
+    border: 1px solid var(--border-warm);
+    border-radius: 8px;
+    padding: 4px 0;
+    transition: border-color 160ms var(--easing);
+  }
+  .faq-list details[open] { border-color: var(--blue-border); }
+  .faq-list summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--brand-blue);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--brand-orange);
+    border-bottom: 2px solid var(--brand-orange);
+    transform: rotate(45deg);
+    transition: transform 200ms var(--easing);
+    flex-shrink: 0;
+    margin-bottom: 4px;
+  }
+  .faq-list details[open] summary::after { transform: rotate(-135deg); margin-bottom: 0; margin-top: 4px; }
+  .faq-list details p { padding: 0 20px 18px; margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-700); }
+
+  /* ---------- About ---------- */
+  .about-card {
+    background: #fff;
+    border: 1px solid var(--border-warm);
+    border-radius: 16px;
+    padding: 32px 28px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 28px;
+    align-items: center;
+    text-align: left;
+    margin-top: 8px;
+  }
+  .portrait {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--bone);
+    border: 1px solid var(--border-warm);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; display: block; }
+  .who__name {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink-900);
+    margin: 0 0 4px;
+  }
+  .who__role { font-size: 13px; color: var(--ink-500); margin: 0 0 14px; }
+  .who__bio { font-size: 14.5px; line-height: 1.6; color: var(--ink-700); margin: 0; }
+  @media (max-width: 540px) {
+    .about-card { grid-template-columns: 1fr; text-align: center; gap: 18px; padding: 26px 22px; }
+    .portrait { margin: 0 auto; width: 120px; height: 120px; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--brand-blue); }
+  .contact .inner { padding-top: 88px; padding-bottom: 88px; color: rgba(255, 255, 255, 0.82); }
+  .contact .eyebrow { color: var(--orange-200); }
+  .contact .h2 { color: #fff; }
+  .contact .lead { color: rgba(255, 255, 255, 0.82); margin-left: auto; margin-right: auto; max-width: 520px; }
+  .methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .methods a {
+    color: var(--orange-200);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    text-decoration: none;
+    transition: color 160ms var(--easing);
+  }
+  .methods a:hover { color: #fff; }
+
+  /* ---------- Footer ---------- */
+  .footer { background: var(--ink-900); }
+  .footer .inner { padding: 40px 24px 32px; color: rgba(255, 255, 255, 0.55); }
+  .footer img { height: 24px; margin: 0 auto 14px; display: block; }
+  .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
+  .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- Sticky nav -->
+  <header class="nav">
+    <div class="nav__row">
+      <a class="nav__brand" href="#top" aria-label="creagh.law — back to top">
+        <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="band hero" id="top">
+    <div class="inner">
+      <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+      <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
+      <p class="lead">Tom Creagh works as in-house counsel by trade. Creagh Law is his off-hours practice — handling business, technology, real estate, and wills matters at reasonable hourly rates, or flat fees where they make sense.</p>
+      <div class="cta-row">
+        <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
+        <a class="btn btn--secondary" href="#how">How it works</a>
+      </div>
+      <div class="stamps">
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evenings &amp; weekends</span>
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Hourly or flat-fee</span>
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Plain English</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="band" style="background: var(--paper);" id="services">
+    <div class="inner">
+      <p class="eyebrow">Practice areas</p>
+      <h2 class="h2">What I work on.</h2>
+      <p class="lead">A focused set of matters where in-house experience translates well to off-hours work.</p>
+      <div class="services-grid">
+        <div class="service">
+          <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Business</h3>
+          <p>Formation, operating agreements, contracts, vendor &amp; customer paper.</p>
+        </div>
+        <div class="service">
+          <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Technology</h3>
+          <p>SaaS terms, MSAs, NDAs, privacy &amp; data-processing agreements.</p>
+        </div>
+        <div class="service">
+          <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg></div>
+          <h3>Real estate</h3>
+          <p>Purchases, leases, and routine HOA matters.</p>
+        </div>
+        <div class="service">
+          <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div>
+          <h3>Wills</h3>
+          <p>Simple wills, powers of attorney, advance directives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="band" style="background: var(--bone);" id="how">
+    <div class="inner">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Three things you can count on.</h2>
+      <p class="lead">A small practice, run on a few clear rules. Most clients find the schedule easier to work with than a regular firm.</p>
+      <div class="principles">
+        <div class="principle">
+          <div class="principle__num">1</div>
+          <div>
+            <h3>After-hours, on purpose.</h3>
+            <p>I work as in-house counsel by trade. Client meetings, drafting, and signings happen in evenings and on weekends — when you actually have time to think.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle__num">2</div>
+          <div>
+            <h3>Pricing that fits the matter.</h3>
+            <p>Reasonable hourly rates for most work. Flat fees when the scope is clear up front and we both benefit from the certainty. Either way, you'll see the number before any work begins.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle__num">3</div>
+          <div>
+            <h3>Written plainly.</h3>
+            <p>Documents, emails, and explanations in language a non-lawyer can act on. Legalese only where it actually matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band" style="background: var(--paper);">
+    <div class="inner">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Common questions.</h2>
+      <div class="faq-list">
+        <details open>
+          <summary>When are you available?</summary>
+          <p>Evenings and weekends — that's the model. Most calls happen between 6–9pm on weekdays or during the day on Saturdays. If you need same-week turnaround, just say so on first contact.</p>
+        </details>
+        <details>
+          <summary>How is pricing handled?</summary>
+          <p>Reasonable hourly rates for most matters, with flat fees offered when the scope is clear up front and both of us benefit from the certainty. After the first call, I'll send the rate or quote in writing before we start.</p>
+        </details>
+        <details>
+          <summary>Do you handle litigation?</summary>
+          <p>No. This is transactional and advisory work only. If your matter needs court representation, I'll point you to counsel who can help.</p>
+        </details>
+        <details>
+          <summary>Is the first call free?</summary>
+          <p>Yes — a short intro call so we can both decide if we're a fit. No invoice, no obligation.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="band" style="background: var(--bone);" id="about">
+    <div class="inner">
+      <p class="eyebrow">About</p>
+      <h2 class="h2">Tom Creagh.</h2>
+      <div class="about-card">
+        <div class="portrait"><img src="«PORTRAIT-URL»" alt="Tom Creagh"></div>
+        <div>
+          <p class="who__name">Tom Creagh</p>
+          <p class="who__role">In-house counsel · founder of Creagh Law</p>
+          <p class="who__bio">In-house counsel by trade. Creagh Law is an off-hours practice — affordable counsel for business, technology, real estate, and wills matters. The aim is straightforward: give people the quality of legal work big companies get, on a schedule and at a price that actually works for them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="band contact" id="contact">
+    <div class="inner">
+      <p class="eyebrow">Ready when you are</p>
+      <h2 class="h2">Let's talk.</h2>
+      <p class="lead">A short intro call. We figure out if your matter's a fit, scope the work, and quote the fee — in writing, before anything starts.</p>
+      <div class="cta-row">
+        <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
+      </div>
+      <div class="methods">
+        <div>Or write to <a href="mailto:tom@creagh.law">tom@creagh.law</a></div>
+        <div>Evenings &amp; weekends · replies within 24 hours</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="band footer">
+    <div class="inner">
+      <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
+      <p class="legal"><strong>© 2026 Creagh Law</strong> · Attorney advertising.<br>
+      This site is for informational purposes and is not legal advice. Prior results do not guarantee a similar outcome.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Fade the nav wordmark in once the hero scrolls out of view.
+    (function () {
+      var hero = document.getElementById('top');
+      if (!hero || !('IntersectionObserver' in window)) {
+        document.body.classList.add('is-past-hero');
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          document.body.classList.toggle('is-past-hero', !e.isIntersecting);
+        });
+      }, { rootMargin: '-80px 0px 0px 0px', threshold: 0 });
+      io.observe(hero);
+    })();
+
+    // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
+    (function () {
+      var DURATION = 650;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function ease(t) { return 1 - Math.pow(1 - t, 3); }
+      function navOffset() {
+        var nav = document.querySelector('.nav');
+        return nav ? nav.getBoundingClientRect().height : 0;
+      }
+      function scrollToY(targetY) {
+        var startY = window.pageYOffset;
+        var diff = targetY - startY;
+        if (Math.abs(diff) < 2) return;
+        if (reduce) { window.scrollTo(0, targetY); return; }
+        var start = null;
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min(1, (ts - start) / DURATION);
+          window.scrollTo(0, startY + diff * ease(t));
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var hash = a.getAttribute('href');
+        if (!hash || hash === '#' || hash.length < 2) return;
+        var target = document.getElementById(hash.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        var rect = target.getBoundingClientRect();
+        var y = Math.max(0, rect.top + window.pageYOffset - navOffset() - 8);
+        scrollToY(y);
+        if (history.pushState) history.pushState(null, '', hash);
+      });
+    })();
+  </script>
+
+</body>
+</html>
