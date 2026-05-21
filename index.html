@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Creagh Law — Counsel that meets you outside business hours</title>
-<meta name="description" content="Tom Creagh is an in-house lawyer; Creagh Law is his off-hours practice, taking on business, technology, real estate, and personal estate matters outside business hours. Reasonable hourly rates or flat fees where they make sense.">
+<meta name="description" content="Creagh Law is the off-hours practice of Tom Creagh, a lawyer with large-firm and in-house experience — business, technology, real estate, and personal estate matters at reasonable hourly rates, or flat fees where they make sense.">
 
 <!-- Open Graph / link previews (used when the URL is shared in iMessage, email, LinkedIn, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creagh Law — Counsel that meets you outside business hours">
-<meta property="og:description" content="An off-hours legal practice for business, technology, real estate, and personal estate matters — reasonable hourly rates or flat fees where they make sense.">
+<meta property="og:description" content="An off-hours legal practice built on large-firm and in-house experience — business, technology, real estate, and personal estate matters at reasonable rates or flat fees.">
 <meta property="og:url" content="https://creagh.law">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -57,7 +57,7 @@
 
   a { color: inherit; }
 
-  /* ---------- Sticky nav ---------- */
+  /* ---------- Sticky nav (desktop default) ---------- */
   .nav {
     position: sticky;
     top: 0;
@@ -80,7 +80,7 @@
     line-height: 0;
     opacity: 0;
     transform: translateY(-2px);
-    transition: opacity 520ms var(--easing), transform 520ms var(--easing);
+    transition: opacity 480ms var(--easing), transform 480ms var(--easing);
     pointer-events: none;
   }
   body.is-past-hero .nav__brand {
@@ -112,6 +112,25 @@
   .nav__toggle svg { width: 26px; height: 26px; display: block; }
 
   @media (max-width: 600px) {
+    /* On mobile the whole bar is fixed and hidden until you scroll past the
+       hero wordmark — no awkward empty bar at the top. Fixed + safe-area
+       padding also keeps the logo clear of the iOS Safari browser chrome so
+       it can't get clipped during scroll. */
+    .nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      padding-top: env(safe-area-inset-top, 0px);
+      opacity: 0;
+      transform: translateY(-110%);
+      transition: opacity 480ms var(--easing), transform 480ms var(--easing);
+    }
+    body.is-past-hero .nav {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav__row { padding: 16px 22px; }
     .nav__toggle { display: inline-flex; }
     .nav__links {
       position: absolute;
@@ -446,7 +465,7 @@
     <div class="inner">
       <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
       <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
-      <p class="lead">Tom Creagh is an in-house lawyer. Creagh Law is his off-hours practice — handling business, technology, real estate, and personal estate matters at reasonable hourly rates, or flat fees where they make sense.</p>
+      <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at reasonable hourly rates, or flat fees where they make sense.</p>
       <div class="cta-row">
         <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
         <a class="btn btn--secondary" href="#how">How it works</a>
@@ -464,7 +483,7 @@
     <div class="inner">
       <p class="eyebrow">Practice areas</p>
       <h2 class="h2">What we do.</h2>
-      <p class="lead">A focused set of matters where in-house experience translates well to off-hours work.</p>
+      <p class="lead">Experienced counsel across the matters that come up most — at accessible rates, on a schedule that fits around your week.</p>
       <div class="services-grid">
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
@@ -558,7 +577,7 @@
         <div>
           <p class="who__name">Tom Creagh</p>
           <p class="who__role">Lawyer · Founder of Creagh Law</p>
-          <p class="who__bio">In-house counsel during business hours, Creagh Law is an "off-hours" practice — affordable counsel for business, technology, real estate, and personal estate matters. The aim is straightforward: give people the quality of legal work big companies get, on a schedule and at a price that actually works for them.</p>
+          <p class="who__bio">Creagh Law is Tom's off-hours practice, built on experience from large-firm and in-house work. It takes on business, technology, real estate, and personal estate matters with a straightforward aim: make that calibre of work accessible — on a schedule and at a price that actually works.</p>
         </div>
       </div>
     </div>
@@ -589,10 +608,11 @@
   </footer>
 
   <script>
-    // Fade the nav wordmark in once the hero scrolls out of view.
+    // Fade the nav brand in (and, on mobile, reveal the whole bar) the moment
+    // the HERO WORDMARK scrolls out of view — not when the whole hero is gone.
     (function () {
-      var hero = document.getElementById('top');
-      if (!hero || !('IntersectionObserver' in window)) {
+      var wm = document.querySelector('.hero__wm');
+      if (!wm || !('IntersectionObserver' in window)) {
         document.body.classList.add('is-past-hero');
         return;
       }
@@ -600,8 +620,8 @@
         entries.forEach(function (e) {
           document.body.classList.toggle('is-past-hero', !e.isIntersecting);
         });
-      }, { rootMargin: '-80px 0px 0px 0px', threshold: 0 });
-      io.observe(hero);
+      }, { rootMargin: '0px 0px 0px 0px', threshold: 0 });
+      io.observe(wm);
     })();
 
     // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
@@ -611,7 +631,11 @@
       function ease(t) { return 1 - Math.pow(1 - t, 3); }
       function navOffset() {
         var nav = document.querySelector('.nav');
-        return nav ? nav.getBoundingClientRect().height : 0;
+        if (!nav) return 0;
+        // Only count the bar's height when it's actually visible (it's hidden at
+        // the top on mobile), so anchored scrolling lands correctly either way.
+        if (getComputedStyle(nav).opacity === '0') return 0;
+        return nav.getBoundingClientRect().height;
       }
       function scrollToY(targetY) {
         var startY = window.pageYOffset;
