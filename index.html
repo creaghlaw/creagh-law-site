@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- Favicon: replace with your own once uploaded to GitHub; falls back to the wordmark mark otherwise -->
-<link rel="icon" href="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/favicon.png">
-<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/apple-touch-icon.png">
+<!-- Favicon (brand mark — lives alongside index.html in the site repo) -->
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +71,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
+    padding: 18px 24px;
     max-width: 640px;
     margin: 0 auto;
   }
@@ -88,18 +88,53 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .nav__brand img { height: 22px; display: block; }
-  .nav__links { display: flex; gap: 18px; }
+  .nav__brand img { height: 28px; display: block; }
+  .nav__links { display: flex; gap: 20px; align-items: center; }
   .nav__links a {
-    font-size: 13.5px;
+    font-size: 14.5px;
     font-weight: 500;
     color: var(--ink-700);
     text-decoration: none;
     transition: color 160ms var(--easing);
   }
   .nav__links a:hover { color: var(--brand-blue); }
-  @media (max-width: 480px) {
-    .nav__links a:nth-child(n+3) { display: none; }
+
+  /* Hamburger toggle — hidden on desktop, shown on mobile */
+  .nav__toggle {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--brand-blue);
+    line-height: 0;
+  }
+  .nav__toggle svg { width: 26px; height: 26px; display: block; }
+
+  @media (max-width: 600px) {
+    .nav__toggle { display: inline-flex; }
+    .nav__links {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border-warm);
+      box-shadow: 0 8px 18px rgba(6, 64, 89, 0.08);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 280ms var(--easing);
+    }
+    .nav.is-open .nav__links { max-height: 320px; }
+    .nav__links a {
+      padding: 16px 24px;
+      font-size: 16px;
+      border-top: 1px solid var(--border-warm);
+    }
+    .nav__links a:first-child { border-top: 0; }
   }
 
   /* ---------- Shared band + inner ---------- */
@@ -160,7 +195,10 @@
 
   /* ---------- Hero ---------- */
   .hero { background: var(--paper); }
-  .hero .inner { padding-top: 72px; padding-bottom: 88px; }
+  .hero .inner { padding-top: 88px; padding-bottom: 120px; }
+  @media (max-width: 600px) {
+    .hero .inner { padding-top: 64px; padding-bottom: 132px; }
+  }
   .hero__wm {
     display: block;
     margin: 0 auto 56px;
@@ -391,6 +429,9 @@
       <a class="nav__brand" href="#top" aria-label="creagh.law — back to top">
         <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
       </a>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <nav class="nav__links" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#how">How it works</a>
@@ -405,7 +446,7 @@
     <div class="inner">
       <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
       <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
-      <p class="lead">Tom Creagh works as in-house counsel by trade. Creagh Law is his off-hours practice — handling business, technology, real estate, and wills matters at reasonable hourly rates, or flat fees where they make sense.</p>
+      <p class="lead">Tom Creagh works as in-house counsel by trade. Creagh Law is his off-hours practice — handling business, technology, real estate, and personal estate matters at reasonable hourly rates, or flat fees where they make sense.</p>
       <div class="cta-row">
         <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
         <a class="btn btn--secondary" href="#how">How it works</a>
@@ -413,7 +454,7 @@
       <div class="stamps">
         <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evenings &amp; weekends</span>
         <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Hourly or flat-fee</span>
-        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Plain English</span>
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Straight answers</span>
       </div>
     </div>
   </section>
@@ -422,13 +463,13 @@
   <section class="band" style="background: var(--paper);" id="services">
     <div class="inner">
       <p class="eyebrow">Practice areas</p>
-      <h2 class="h2">What I work on.</h2>
+      <h2 class="h2">What we do.</h2>
       <p class="lead">A focused set of matters where in-house experience translates well to off-hours work.</p>
       <div class="services-grid">
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <h3>Business</h3>
-          <p>Formation, operating agreements, contracts, vendor &amp; customer paper.</p>
+          <p>Formation, contracts, corporate governance, M&amp;A.</p>
         </div>
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
@@ -438,12 +479,12 @@
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg></div>
           <h3>Real estate</h3>
-          <p>Purchases, leases, and routine HOA matters.</p>
+          <p>Purchases, sales, refinancings, and leases.</p>
         </div>
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div>
           <h3>Wills</h3>
-          <p>Simple wills, powers of attorney, advance directives.</p>
+          <p>Wills, advance directives, powers of attorney.</p>
         </div>
       </div>
     </div>
@@ -460,7 +501,7 @@
           <div class="principle__num">1</div>
           <div>
             <h3>After-hours, on purpose.</h3>
-            <p>I work as in-house counsel by trade. Client meetings, drafting, and signings happen in evenings and on weekends — when you actually have time to think.</p>
+            <p>Tom works as in-house counsel by trade. Client meetings, drafting, and signings happen in evenings and on weekends — when you actually have time.</p>
           </div>
         </div>
         <div class="principle">
@@ -473,8 +514,8 @@
         <div class="principle">
           <div class="principle__num">3</div>
           <div>
-            <h3>Written plainly.</h3>
-            <p>Documents, emails, and explanations in language a non-lawyer can act on. Legalese only where it actually matters.</p>
+            <h3>Clearly explained.</h3>
+            <p>Advice and documents in language you can actually act on — the reasoning made clear, the legal complexity handled without burying you in it.</p>
           </div>
         </div>
       </div>
@@ -493,11 +534,11 @@
         </details>
         <details>
           <summary>How is pricing handled?</summary>
-          <p>Reasonable hourly rates for most matters, with flat fees offered when the scope is clear up front and both of us benefit from the certainty. After the first call, I'll send the rate or quote in writing before we start.</p>
+          <p>Reasonable hourly rates for most matters, with flat fees offered when the scope is clear up front and both of us benefit from the certainty. After the first call, you'll get the rate or quote in writing before we start.</p>
         </details>
         <details>
           <summary>Do you handle litigation?</summary>
-          <p>No. This is transactional and advisory work only. If your matter needs court representation, I'll point you to counsel who can help.</p>
+          <p>No. This is transactional and advisory work only. If your matter needs court representation, we'll point you to counsel who can help.</p>
         </details>
         <details>
           <summary>Is the first call free?</summary>
@@ -513,11 +554,11 @@
       <p class="eyebrow">About</p>
       <h2 class="h2">Tom Creagh.</h2>
       <div class="about-card">
-        <div class="portrait"><img src="«PORTRAIT-URL»" alt="Tom Creagh"></div>
+        <div class="portrait"><img src="tom-creagh-portrait.jpg" alt="Tom Creagh"></div>
         <div>
           <p class="who__name">Tom Creagh</p>
           <p class="who__role">In-house counsel · founder of Creagh Law</p>
-          <p class="who__bio">In-house counsel by trade. Creagh Law is an off-hours practice — affordable counsel for business, technology, real estate, and wills matters. The aim is straightforward: give people the quality of legal work big companies get, on a schedule and at a price that actually works for them.</p>
+          <p class="who__bio">In-house counsel by trade. Creagh Law is an off-hours practice — affordable counsel for business, technology, real estate, and personal estate matters. The aim is straightforward: give people the quality of legal work big companies get, on a schedule and at a price that actually works for them.</p>
         </div>
       </div>
     </div>
@@ -533,7 +574,6 @@
         <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
       </div>
       <div class="methods">
-        <div>Or write to <a href="mailto:tom@creagh.law">tom@creagh.law</a></div>
         <div>Evenings &amp; weekends · replies within 24 hours</div>
       </div>
     </div>
@@ -543,8 +583,8 @@
   <footer class="band footer">
     <div class="inner">
       <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
-      <p class="legal"><strong>© 2026 Creagh Law</strong> · Attorney advertising.<br>
-      This site is for informational purposes and is not legal advice. Prior results do not guarantee a similar outcome.</p>
+      <p class="legal"><strong>© 2026 Creagh Law</strong><br>
+      The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
     </div>
   </footer>
 
@@ -599,6 +639,25 @@
         var y = Math.max(0, rect.top + window.pageYOffset - navOffset() - 8);
         scrollToY(y);
         if (history.pushState) history.pushState(null, '', hash);
+      });
+    })();
+
+    // Mobile hamburger menu: toggle open/closed; close after tapping a link.
+    (function () {
+      var nav = document.querySelector('.nav');
+      var toggle = document.querySelector('.nav__toggle');
+      var links = document.querySelector('.nav__links');
+      if (!nav || !toggle || !links) return;
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      toggle.addEventListener('click', function () {
+        setOpen(!nav.classList.contains('is-open'));
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
       });
     })();
   </script>
