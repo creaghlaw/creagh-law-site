@@ -262,9 +262,16 @@
   }
   .hero__wm {
     display: block;
-    margin: 0 auto 88px;
+    margin: 0 auto 40px;
     height: clamp(60px, 11vw, 92px);
     width: auto;
+  }
+  .hero__divider {
+    width: 48px;
+    height: 2px;
+    background: var(--brand-orange);
+    border-radius: 2px;
+    margin: 0 auto 44px;
   }
   .hero h1 {
     font-family: 'Urbanist', sans-serif;
@@ -505,6 +512,7 @@
   <section class="band hero" id="top">
     <div class="inner">
       <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+      <div class="hero__divider" aria-hidden="true"></div>
       <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
       <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
       <div class="cta-row">
