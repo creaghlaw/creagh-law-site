@@ -26,6 +26,7 @@
   "name": "Creagh Law",
   "description": "The off-hours legal practice of Tom Creagh, a lawyer with large-firm and in-house experience, handling business, technology, real estate, and personal estate matters in New Brunswick.",
   "url": "https://www.creagh.law",
+  "logo": "https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg",
   "email": "tom@creagh.law",
   "founder": {
     "@type": "Person",
@@ -508,7 +509,14 @@
   .methods a:hover { color: #fff; }
 
   /* ---------- Footer ---------- */
-  .footer { background: var(--ink-900); }
+  .footer { background: var(--brand-blue); }
+  .footer__rule {
+    width: 64px;
+    height: 1.5px;
+    background: var(--brand-orange);
+    border-radius: 2px;
+    margin: 0 auto 28px;
+  }
   .footer .inner { padding: 40px 24px 32px; color: rgba(255, 255, 255, 0.55); }
   .footer img { height: 24px; margin: 0 auto 14px; display: block; }
   .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
@@ -688,6 +696,7 @@
   <!-- Footer -->
   <footer class="band footer">
     <div class="inner">
+      <div class="footer__rule" aria-hidden="true"></div>
       <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
       <p class="legal"><strong>© 2026 Creagh Law</strong> · Practising in New Brunswick<br>
       The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
