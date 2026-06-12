@@ -18,6 +18,10 @@
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+<!-- Browser chrome color per theme (address bar on mobile, etc.) -->
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161514" media="(prefers-color-scheme: dark)">
+
 <!-- Structured data (helps search engines understand the practice; invisible to visitors) -->
 <script type="application/ld+json">
 {
@@ -115,7 +119,12 @@
     --border-warm: #E9E6DC;
     --blue-tint: #EEF3F8;
     --blue-border: #A8C0D5;
+    --blue-200: #A8C0D5;     /* light steel blue — blue accents on dark */
+    --orange-400: #E98935;   /* the on-dark orange (brand rule) */
+    --surface: #ffffff;      /* card / elevated surface */
+    --nav-bg: rgba(251, 250, 247, 0.94);
     --easing: cubic-bezier(0.22, 1, 0.36, 1);
+    color-scheme: light dark; /* lets scrollbars & UA chrome adapt */
   }
 
   * { box-sizing: border-box; }
@@ -139,7 +148,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(251, 250, 247, 0.94);
+    background: var(--nav-bg);
     backdrop-filter: saturate(180%) blur(10px);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
     border-bottom: 1px solid var(--border-warm);
@@ -286,7 +295,7 @@
   }
   .btn--accent { background: var(--brand-orange); color: #fff; }
   .btn--accent:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(6, 64, 89, 0.07); }
-  .btn--secondary { background: #fff; color: var(--brand-blue); border-color: var(--blue-border); }
+  .btn--secondary { background: var(--surface); color: var(--brand-blue); border-color: var(--blue-border); }
   .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
@@ -349,7 +358,7 @@
     text-align: left;
   }
   .service {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border-warm);
     border-radius: 12px;
     padding: 22px 20px;
@@ -384,7 +393,7 @@
   /* ---------- How it works ---------- */
   .principles { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 8px; }
   .principle {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border-warm);
     border-radius: 12px;
     padding: 22px 24px;
@@ -417,7 +426,7 @@
   /* ---------- FAQ ---------- */
   .faq-list { display: flex; flex-direction: column; gap: 8px; text-align: left; margin-top: 8px; }
   .faq-list details {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border-warm);
     border-radius: 8px;
     padding: 4px 0;
@@ -454,7 +463,7 @@
 
   /* ---------- About ---------- */
   .about-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--border-warm);
     border-radius: 16px;
     padding: 32px 28px;
@@ -524,6 +533,41 @@
   .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
   .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
 
+  /* ---------- Dark mode (follows the visitor's system setting) ----------
+     Warm charcoal neutrals (the dark counterpart of paper/bone), banding
+     rhythm preserved, contact + footer stay brand blue as the anchor.
+     Brand rules on dark: reversed wordmark; orange accents step to
+     orange-400; blue accents step to blue-200 (steel). */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #161514;        /* base band — warm near-black */
+      --bone: #1D1B19;         /* alternating band — one step lighter */
+      --surface: #232120;      /* cards / elevated surfaces */
+      --border-warm: #2E2B28;  /* warm dark border */
+      --ink-900: #F1EEE8;      /* headings — warm white */
+      --ink-700: #C7C2B9;      /* body text */
+      --ink-500: #9A948A;      /* meta / tertiary */
+      --ink-100: #33302C;
+      --blue-tint: #102633;    /* icon chip — deep blue */
+      --blue-border: rgba(168, 192, 213, 0.4);
+      --nav-bg: rgba(22, 21, 19, 0.92);
+    }
+    .nav__links { background: #1B1A18; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45); }
+    .nav__links a:hover { color: var(--blue-200); }
+    .eyebrow { color: var(--orange-400); }
+    .contact .eyebrow { color: var(--orange-200); } /* small caps on blue: paler = more legible */
+    .hero__divider, .footer__rule { background: var(--orange-400); }
+    .accent { color: var(--blue-200); box-shadow: inset 0 -0.18em 0 0 rgba(233, 137, 53, 0.55); }
+    .stamps svg { color: var(--orange-400); }
+    .service h3, .principle h3, .faq-list summary, .btn--secondary { color: var(--blue-200); }
+    .service__icon { color: var(--blue-200); }
+    .service:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); }
+    .btn--accent:hover { background: var(--orange-400); } /* hover lighter on dark */
+    .btn--secondary { background: rgba(255, 255, 255, 0.04); }
+    .btn--secondary:hover { background: rgba(168, 192, 213, 0.08); border-color: var(--blue-200); }
+    .faq-list summary::after { border-right-color: var(--orange-400); border-bottom-color: var(--orange-400); }
+  }
+
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
@@ -537,7 +581,10 @@
   <header class="nav">
     <div class="nav__row">
       <a class="nav__brand" href="#top" aria-label="creagh.law — back to top">
-        <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+        <picture>
+          <source srcset="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" media="(prefers-color-scheme: dark)">
+          <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+        </picture>
       </a>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -555,7 +602,10 @@
   <!-- Hero -->
   <section class="band hero" id="top">
     <div class="inner">
-      <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+      <picture>
+        <source srcset="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" media="(prefers-color-scheme: dark)">
+        <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+      </picture>
       <div class="hero__divider" aria-hidden="true"></div>
       <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
       <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
