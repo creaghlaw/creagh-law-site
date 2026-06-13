@@ -20,7 +20,7 @@
 
 <!-- Browser chrome color per theme (address bar on mobile, etc.) -->
 <meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161514" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0D1620" media="(prefers-color-scheme: dark)">
 
 <!-- Structured data (helps search engines understand the practice; invisible to visitors) -->
 <script type="application/ld+json">
@@ -534,25 +534,26 @@
   .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
 
   /* ---------- Dark mode (follows the visitor's system setting) ----------
-     Warm charcoal neutrals (the dark counterpart of paper/bone), banding
-     rhythm preserved, contact + footer stay brand blue as the anchor.
+     Midnight navy neutrals (desaturated night-blue, between slate and deep
+     navy), banding rhythm preserved, contact + footer stay brand blue as
+     the anchor.
      Brand rules on dark: reversed wordmark; orange accents step to
      orange-400; blue accents step to blue-200 (steel). */
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper: #161514;        /* base band — warm near-black */
-      --bone: #1D1B19;         /* alternating band — one step lighter */
-      --surface: #232120;      /* cards / elevated surfaces */
-      --border-warm: #2E2B28;  /* warm dark border */
-      --ink-900: #F1EEE8;      /* headings — warm white */
-      --ink-700: #C7C2B9;      /* body text */
-      --ink-500: #9A948A;      /* meta / tertiary */
-      --ink-100: #33302C;
-      --blue-tint: #102633;    /* icon chip — deep blue */
+      --paper: #0D1620;        /* base band — midnight navy */
+      --bone: #131E2A;         /* alternating band — one step lighter */
+      --surface: #182836;      /* cards / elevated surfaces */
+      --border-warm: #243747;  /* dark navy border */
+      --ink-900: #ECF1F5;      /* headings — cool white */
+      --ink-700: #BEC9D3;      /* body text */
+      --ink-500: #8996A2;      /* meta / tertiary */
+      --ink-100: #263A49;
+      --blue-tint: #153146;    /* icon chip — deep blue */
       --blue-border: rgba(168, 192, 213, 0.4);
-      --nav-bg: rgba(22, 21, 19, 0.92);
+      --nav-bg: rgba(11, 19, 28, 0.92);
     }
-    .nav__links { background: #1B1A18; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45); }
+    .nav__links { background: #101D29; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45); }
     .nav__links a:hover { color: var(--blue-200); }
     .eyebrow { color: var(--orange-400); }
     .contact .eyebrow { color: var(--orange-200); } /* small caps on blue: paler = more legible */
