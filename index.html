@@ -235,6 +235,12 @@
       transition: max-height 280ms var(--easing);
     }
     .nav.is-open .nav__links { max-height: 320px; }
+    /* Dark mode: the mobile dropdown floats over dark content, so it needs a
+       deeper shadow than the light blue-tinted one. Background comes from
+       --paper (midnight) via the token — no override needed. */
+    @media (prefers-color-scheme: dark) {
+      .nav__links { box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45); }
+    }
     .nav__links a {
       padding: 16px 24px;
       font-size: 16px;
@@ -553,7 +559,6 @@
       --blue-border: rgba(168, 192, 213, 0.4);
       --nav-bg: rgba(11, 19, 28, 0.92);
     }
-    .nav__links { background: #101D29; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45); }
     .nav__links a:hover { color: var(--blue-200); }
     .eyebrow { color: var(--orange-400); }
     .contact .eyebrow { color: var(--orange-200); } /* small caps on blue: paler = more legible */
