@@ -164,15 +164,6 @@
   .nav__brand {
     display: inline-block;
     line-height: 0;
-    opacity: 0;
-    transform: translateY(-2px);
-    transition: opacity 480ms var(--easing), transform 480ms var(--easing);
-    pointer-events: none;
-  }
-  body.is-past-hero .nav__brand {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
   }
   .nav__brand img { height: 28px; display: block; }
   .nav__links { display: flex; gap: 20px; align-items: center; }
@@ -199,23 +190,11 @@
   .nav__toggle svg { width: 26px; height: 26px; display: block; }
 
   @media (max-width: 600px) {
-    /* On mobile the whole bar is fixed and hidden until you scroll past the
-       hero wordmark — no awkward empty bar at the top. Fixed + safe-area
-       padding also keeps the logo clear of the iOS Safari browser chrome so
-       it can't get clipped during scroll. */
+    /* The bar stays put at the top at all times so the wordmark is always
+       visible. Sticky + safe-area padding keeps the logo clear of the iOS
+       Safari browser chrome so it can't get clipped during scroll. */
     .nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
       padding-top: env(safe-area-inset-top, 0px);
-      opacity: 0;
-      transform: translateY(-110%);
-      transition: opacity 480ms var(--easing), transform 480ms var(--easing);
-    }
-    body.is-past-hero .nav {
-      opacity: 1;
-      transform: translateY(0);
     }
     .nav__row { padding: 16px 22px; }
     .nav__toggle { display: inline-flex; }
@@ -305,29 +284,52 @@
   .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-  /* ---------- Hero ---------- */
+  /* ---------- Hero ----------
+     Wide (>860px): two columns — text left, rounded-square portrait right.
+     Narrow (<=860px): centered, with a small rounded-square portrait above
+     the headline. The wordmark is NOT in the hero (it lives in the nav at
+     all times); the portrait is what leads the hero instead. */
   .hero { background: var(--paper); }
-  .hero .inner { padding-top: 88px; padding-bottom: 120px; }
-  @media (max-width: 600px) {
-    .hero .inner { padding-top: 64px; padding-bottom: 132px; }
+  .hero .inner {
+    max-width: 940px;
+    padding-top: clamp(56px, 7vw, 92px);
+    padding-bottom: clamp(72px, 9vw, 120px);
+    text-align: left;
   }
-  .hero__wm {
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .hero__photo {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-warm);
+    background: var(--bone);
+    justify-self: end;
+    transition: max-width 320ms var(--easing), border-radius 320ms var(--easing);
+  }
+  .hero__photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
     display: block;
-    margin: 0 auto 40px;
-    height: clamp(60px, 11vw, 92px);
-    width: auto;
   }
   .hero__divider {
     width: 48px;
     height: 2px;
     background: var(--brand-orange);
     border-radius: 2px;
-    margin: 0 auto 44px;
+    margin: 0 0 30px;
   }
   .hero h1 {
     font-family: 'Urbanist', sans-serif;
     font-weight: 600;
-    font-size: clamp(34px, 6.4vw, 52px);
+    font-size: clamp(34px, 5.6vw, 48px);
     line-height: 1.05;
     letter-spacing: -0.025em;
     color: var(--ink-900);
@@ -338,23 +340,46 @@
     white-space: nowrap;
     box-shadow: inset 0 -0.18em 0 0 var(--orange-200);
   }
-  /* On narrow screens the phrase is wider than the viewport; allow it to wrap
-     rather than force horizontal scroll. The underline simply follows each line. */
-  @media (max-width: 420px) {
-    .accent { white-space: normal; }
-  }
-  .hero .lead { margin-left: auto; margin-right: auto; max-width: 520px; }
+  .hero .lead { max-width: 520px; margin: 0 0 32px; }
+  .hero .cta-row { justify-content: flex-start; }
   .stamps {
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 22px;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 13px;
     color: var(--ink-500);
   }
   .stamps span { display: inline-flex; align-items: center; gap: 6px; }
   .stamps svg { color: var(--brand-orange); }
+
+  /* Narrow: collapse to a centered single column with a small portrait on top */
+  @media (max-width: 860px) {
+    .hero .inner { text-align: center; }
+    .hero__grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0;
+    }
+    .hero__photo {
+      order: -1;                 /* portrait moves above the text */
+      width: clamp(96px, 24vw, 132px);
+      max-width: none;
+      aspect-ratio: 1 / 1;       /* compact square on small screens */
+      border-radius: 16px;
+      justify-self: center;
+      margin-bottom: 28px;
+    }
+    .hero__divider { margin-left: auto; margin-right: auto; }
+    .hero h1 { margin-left: auto; margin-right: auto; }
+    .hero .lead { margin-left: auto; margin-right: auto; }
+    .hero .cta-row { justify-content: center; }
+    .stamps { justify-content: center; }
+  }
+  @media (max-width: 420px) {
+    .accent { white-space: normal; }
+  }
 
   /* ---------- Services ---------- */
   .services-grid {
@@ -572,11 +597,30 @@
     .btn--secondary { background: rgba(255, 255, 255, 0.04); }
     .btn--secondary:hover { background: rgba(168, 192, 213, 0.08); border-color: var(--blue-200); }
     .faq-list summary::after { border-right-color: var(--orange-400); border-bottom-color: var(--orange-400); }
+    .hero__photo { border-color: var(--blue-border); }
+  }
+
+  /* ---------- Motion: gentle entrance as sections scroll in ----------
+     Elements tagged .reveal start slightly lowered + transparent, then ease
+     into place when they enter the viewport (class added by JS). Purely
+     additive — if JS doesn't run, .reveal-in is applied immediately so
+     nothing is ever stuck hidden. All of this is disabled under
+     prefers-reduced-motion (below). */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 620ms var(--easing), transform 620ms var(--easing);
+    will-change: opacity, transform;
+  }
+  .reveal.reveal-in {
+    opacity: 1;
+    transform: none;
   }
 
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -608,28 +652,31 @@
   <!-- Hero -->
   <section class="band hero" id="top">
     <div class="inner">
-      <picture>
-        <source srcset="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" media="(prefers-color-scheme: dark)">
-        <img class="hero__wm" src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
-      </picture>
-      <div class="hero__divider" aria-hidden="true"></div>
-      <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
-      <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
-      <div class="cta-row">
-        <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
-        <a class="btn btn--secondary" href="#how">How we work</a>
-      </div>
-      <div class="stamps">
-        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evenings and weekends</span>
-        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Hourly or flat-fee</span>
-        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Straight answers</span>
+      <div class="hero__grid">
+        <div class="hero__text">
+          <div class="hero__divider" aria-hidden="true"></div>
+          <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
+          <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
+          <div class="cta-row">
+            <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
+            <a class="btn btn--secondary" href="#how">How we work</a>
+          </div>
+          <div class="stamps">
+            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evenings and weekends</span>
+            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Hourly or flat-fee</span>
+            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Straight answers</span>
+          </div>
+        </div>
+        <div class="hero__photo">
+          <img src="tom-creagh-portrait.jpg" alt="Tom Creagh">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Services -->
   <section class="band" style="background: var(--bone);" id="services">
-    <div class="inner">
+    <div class="inner reveal">
       <p class="eyebrow">Practice areas</p>
       <h2 class="h2">What we do.</h2>
       <p class="lead">Experienced, hands-on counsel across a focused set of practice areas — at affordable rates, on a schedule that fits around your week.</p>
@@ -660,7 +707,7 @@
 
   <!-- How it works -->
   <section class="band" style="background: var(--paper);" id="how">
-    <div class="inner">
+    <div class="inner reveal">
       <p class="eyebrow">How we work</p>
       <h2 class="h2">Three things you can count on.</h2>
       <p class="lead">A small practice, run on a few core principles: timing, cost, and clarity.</p>
@@ -692,7 +739,7 @@
 
   <!-- FAQ -->
   <section class="band" style="background: var(--bone);" id="faq">
-    <div class="inner">
+    <div class="inner reveal">
       <p class="eyebrow">FAQ</p>
       <h2 class="h2">Common questions.</h2>
       <div class="faq-list">
@@ -722,7 +769,7 @@
 
   <!-- About -->
   <section class="band" style="background: var(--paper);" id="about">
-    <div class="inner">
+    <div class="inner reveal">
       <p class="eyebrow">About</p>
       <h2 class="h2">Tom Creagh</h2>
       <div class="about-card">
@@ -737,7 +784,7 @@
 
   <!-- Contact -->
   <section class="band contact" id="contact">
-    <div class="inner">
+    <div class="inner reveal">
       <p class="eyebrow">Ready when you are</p>
       <h2 class="h2">Let's talk.</h2>
       <p class="lead">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
@@ -762,20 +809,56 @@
   </footer>
 
   <script>
-    // Fade the nav brand in (and, on mobile, reveal the whole bar) the moment
-    // the HERO WORDMARK scrolls out of view — not when the whole hero is gone.
+    // Gentle entrance: sections fade-and-rise as they scroll into view.
+    // Sections already visible at load are shown immediately (no animation —
+    // you can't watch motion you're already looking at). Only sections that
+    // were below the fold animate when you scroll down to them. If
+    // IntersectionObserver is unavailable, everything shows immediately.
     (function () {
-      var wm = document.querySelector('.hero__wm');
-      if (!wm || !('IntersectionObserver' in window)) {
-        document.body.classList.add('is-past-hero');
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('reveal-in'); });
         return;
       }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          document.body.classList.toggle('is-past-hero', !e.isIntersecting);
+
+      // Anything on screen RIGHT NOW (at load) is revealed instantly, with the
+      // transition suppressed so it doesn't fade for content the visitor is
+      // already looking at. Using the full viewport height (not a fraction)
+      // matches the observer's own "is it intersecting" test, so no element
+      // can fall through the crack and animate while off-screen at the top.
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      els.forEach(function (el) {
+        var top = el.getBoundingClientRect().top;
+        if (top < vh) {                   // any part on screen at load
+          el.style.transition = 'none';
+          el.classList.add('reveal-in');
+          el.dataset.revealedAtLoad = '1';
+        }
+      });
+      // Restore transitions on the next frame for the ones we snapped in.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          els.forEach(function (el) {
+            if (el.dataset.revealedAtLoad) { el.style.transition = ''; }
+          });
         });
-      }, { rootMargin: '0px 0px 0px 0px', threshold: 0 });
-      io.observe(wm);
+      });
+
+      // Observe the rest; they animate when scrolled into view. The negative
+      // bottom margin means the trigger fires once the section has risen a
+      // good way up into the viewport, so the motion is actually witnessed.
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('reveal-in');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });
+
+      els.forEach(function (el) {
+        if (!el.dataset.revealedAtLoad) { io.observe(el); }
+      });
     })();
 
     // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
@@ -786,7 +869,6 @@
       function navOffset() {
         var nav = document.querySelector('.nav');
         if (!nav) return 0;
-        if (getComputedStyle(nav).opacity === '0') return 0;
         return nav.getBoundingClientRect().height;
       }
       function scrollToY(targetY) {
