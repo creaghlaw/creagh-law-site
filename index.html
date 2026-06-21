@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Creagh Law — New Brunswick Lawyer | Business, Real Estate &amp; Wills</title>
 <meta name="description" content="Creagh Law is the off-hours practice of Tom Creagh, a lawyer with large-firm and in-house experience — business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.">
- 
+
 <!-- Open Graph / link previews (used when the URL is shared in iMessage, email, LinkedIn, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creagh Law — Counsel that meets you outside business hours">
@@ -13,15 +13,15 @@
 <meta property="og:url" content="https://creagh.law">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
 <meta name="twitter:card" content="summary_large_image">
- 
+
 <!-- Favicon (brand mark — lives alongside index.html in the site repo) -->
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
- 
+
 <!-- Browser chrome color per theme (address bar on mobile, etc.) -->
 <meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D1620" media="(prefers-color-scheme: dark)">
- 
+
 <!-- Structured data (helps search engines understand the practice; invisible to visitors) -->
 <script type="application/ld+json">
 {
@@ -57,7 +57,7 @@
   "availableLanguage": "English"
 }
 </script>
- 
+
 <!-- Fonts (self-hosted in /fonts — no third-party CDN, loads reliably everywhere) -->
 <style>
   @font-face {
@@ -103,7 +103,7 @@
     src: url('fonts/figtree-600.woff2') format('woff2');
   }
 </style>
- 
+
 <style>
   :root {
     --brand-blue: #064059;
@@ -123,14 +123,16 @@
     --orange-400: #E98935;   /* the on-dark orange (brand rule) */
     --surface: #ffffff;      /* card / elevated surface */
     --nav-bg: rgba(251, 250, 247, 0.94);
+    --content-w: 1080px;     /* one shared content width for every band */
+    --measure: 560px;        /* readable text-measure cap inside wide bands */
     --easing: cubic-bezier(0.22, 1, 0.36, 1);
     color-scheme: light dark; /* lets scrollbars & UA chrome adapt */
   }
- 
+
   * { box-sizing: border-box; }
- 
+
   html { scroll-behavior: auto; } /* JS handles smooth scroll; this avoids double-easing */
- 
+
   body {
     margin: 0;
     background: var(--paper);
@@ -140,9 +142,9 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
- 
+
   a { color: inherit; }
- 
+
   /* ---------- Sticky nav (desktop default) ---------- */
   .nav {
     position: sticky;
@@ -176,7 +178,7 @@
     transition: color 160ms var(--easing);
   }
   .nav__links a:hover { color: var(--brand-blue); }
- 
+
   /* Hamburger toggle — hidden on desktop, shown on mobile */
   .nav__toggle {
     display: none;
@@ -188,7 +190,7 @@
     line-height: 0;
   }
   .nav__toggle svg { width: 26px; height: 26px; display: block; }
- 
+
   @media (max-width: 600px) {
     /* The bar stays put at the top at all times so the wordmark is always
        visible. Sticky + safe-area padding keeps the logo clear of the iOS
@@ -227,13 +229,13 @@
     }
     .nav__links a:first-child { border-top: 0; }
   }
- 
+
   /* ---------- Shared band + inner ---------- */
   .band { width: 100%; }
   .inner {
-    max-width: 640px;
+    max-width: var(--content-w);
     margin: 0 auto;
-    padding: 80px 24px;
+    padding: clamp(60px, 7vw, 84px) 24px;
     text-align: center;
   }
   .eyebrow {
@@ -260,7 +262,7 @@
     color: var(--ink-700);
     margin: 0 0 32px;
   }
- 
+
   /* ---------- Buttons ---------- */
   .btn {
     display: inline-flex;
@@ -283,7 +285,7 @@
   .btn--secondary { background: var(--surface); color: var(--brand-blue); border-color: var(--blue-border); }
   .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
- 
+
   /* ---------- Hero ----------
      Wide (>860px): two columns — text left, rounded-square portrait right.
      Narrow (<=860px): centered, with a small rounded-square portrait above
@@ -291,15 +293,15 @@
      all times); the portrait is what leads the hero instead. */
   .hero { background: var(--paper); }
   .hero .inner {
-    max-width: 940px;
-    padding-top: clamp(56px, 7vw, 92px);
-    padding-bottom: clamp(72px, 9vw, 120px);
+    max-width: var(--content-w);
+    padding-top: clamp(60px, 7vw, 88px);
+    padding-bottom: clamp(72px, 8vw, 104px);
     text-align: left;
   }
   .hero__grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(32px, 5vw, 64px);
+    grid-template-columns: 1fr 320px;
+    gap: clamp(36px, 5vw, 72px);
     align-items: center;
   }
   .hero__photo {
@@ -353,7 +355,7 @@
   }
   .stamps span { display: inline-flex; align-items: center; gap: 6px; }
   .stamps svg { color: var(--brand-orange); }
- 
+
   /* Narrow: collapse to a centered single column with a small portrait on top */
   @media (max-width: 860px) {
     .hero .inner { text-align: center; }
@@ -380,13 +382,13 @@
   @media (max-width: 420px) {
     .accent { white-space: normal; }
   }
- 
+
   /* ---------- Zigzag bands (wide screens) ----------
      Each content section is a two-column band: a sticky heading panel and a
      body panel. The heading alternates sides section to section (left, right,
      left, right, left) to create the zigzag. Collapses to a centered single
      column at <=860px (the phone/tween layout). */
-  .zz { max-width: 1100px; margin: 0 auto; padding: clamp(60px, 7vw, 84px) 24px; }
+  .zz { max-width: var(--content-w); margin: 0 auto; padding: clamp(60px, 7vw, 84px) 24px; }
   .zz-grid {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -405,13 +407,31 @@
   .zz-head .h2 { margin-bottom: 16px; }
   .zz-head .zz-intro { font-size: 16px; line-height: 1.55; color: var(--ink-700); margin: 0; }
   .zz-head .h2:last-child { margin-bottom: 0; }
-  /* About band specifics: portrait sits atop the heading panel; bio is larger */
-  .zz-portrait { margin-bottom: 22px; }
-  .zz-bio { font-size: 18px; line-height: 1.65; color: var(--ink-700); margin: 0; max-width: 62ch; }
+  /* About band: portrait beside a single text block (eyebrow + name + role +
+     bio together). The text block gives the column its height, so the two
+     sides balance naturally — no lopsided stack. Portrait sits right, matching
+     the alternating rhythm of the bands above. */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: clamp(40px, 5vw, 64px);
+    align-items: center;
+  }
+  .about-portrait {
+    grid-column: 2;
+    width: 240px; height: 240px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bone);
+    border: 1px solid var(--border-warm);
+  }
+  .about-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+  .about-text { grid-column: 1; grid-row: 1; max-width: 60ch; }
+  .about-text .who__bio { font-size: 16px; line-height: 1.7; color: var(--ink-700); margin: 14px 0 0; }
   /* Contact band is vertically centered and a touch more padded */
   .contact .zz { padding-top: clamp(64px, 7vw, 84px); padding-bottom: clamp(40px, 5vw, 48px); }
   .contact .zz-grid { align-items: center; }
- 
+
   @media (max-width: 860px) {
     .zz { padding-left: 24px; padding-right: 24px; text-align: center; }
     .zz-grid, .zz-grid.flip { grid-template-columns: 1fr; gap: 28px; }
@@ -422,10 +442,14 @@
     .zz-grid.flip .zz-head, .zz-grid .zz-head { grid-column: 1; grid-row: 1; }
     .zz-grid.flip .zz-body, .zz-grid .zz-body { grid-column: 1; grid-row: 2; }
     .zz-body { text-align: left; }
-    .zz-portrait { margin-left: auto; margin-right: auto; }
     .zz-head .zz-intro { max-width: 60ch; margin-left: auto; margin-right: auto; }
+    /* About collapses to centered single column: portrait on top, text below */
+    .about-grid { grid-template-columns: 1fr; gap: 28px; justify-items: center; text-align: center; }
+    .about-portrait { grid-column: 1; grid-row: 1; }
+    .about-text { grid-column: 1; grid-row: 2; max-width: 60ch; }
+    .about-text .who__bio { text-align: left; }
   }
- 
+
   /* ---------- Services ---------- */
   .services-grid {
     display: grid;
@@ -465,7 +489,7 @@
   }
   .service p { font-size: 14px; line-height: 1.5; color: var(--ink-700); margin: 0; }
   @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
- 
+
   /* ---------- How it works ---------- */
   .principles { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 8px; }
   .principle {
@@ -498,7 +522,7 @@
     margin: 0 0 4px;
   }
   .principle p { font-size: 14.5px; line-height: 1.55; color: var(--ink-700); margin: 0; }
- 
+
   /* ---------- FAQ ---------- */
   .faq-list { display: flex; flex-direction: column; gap: 8px; text-align: left; margin-top: 8px; }
   .faq-list details {
@@ -536,28 +560,8 @@
   }
   .faq-list details[open] summary::after { transform: rotate(-135deg); margin-bottom: 0; margin-top: 4px; }
   .faq-list details p { padding: 0 20px 18px; margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-700); }
- 
-  /* ---------- About ---------- */
-  .about-card {
-    background: var(--surface);
-    border: 1px solid var(--border-warm);
-    border-radius: 16px;
-    padding: 32px 28px;
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 28px;
-    align-items: center;
-    text-align: left;
-    margin-top: 8px;
-  }
-  .portrait {
-    width: 140px; height: 140px;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--bone);
-    border: 1px solid var(--border-warm);
-  }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; display: block; }
+
+  /* ---------- About (see .about-grid above for layout) ---------- */
   .who__role {
     font-family: 'Urbanist', sans-serif;
     font-weight: 500;
@@ -566,15 +570,10 @@
     color: var(--ink-500);
     margin: 0 0 14px;
   }
-  .who__bio { font-size: 14.5px; line-height: 1.6; color: var(--ink-700); margin: 0; }
-  @media (max-width: 540px) {
-    .about-card { grid-template-columns: 1fr; text-align: center; gap: 18px; padding: 26px 22px; }
-    .portrait { margin: 0 auto; width: 120px; height: 120px; }
-  }
- 
+  .who__bio { font-size: 16px; line-height: 1.7; color: var(--ink-700); margin: 0; }
+
   /* ---------- Contact ---------- */
   .contact { background: var(--brand-blue); }
-  .contact .inner { padding-top: 88px; padding-bottom: 32px; color: rgba(255, 255, 255, 0.82); }
   .contact .eyebrow { color: var(--orange-200); }
   .contact .h2 { color: #fff; }
   .contact .lead { color: rgba(255, 255, 255, 0.82); margin-left: auto; margin-right: auto; max-width: 520px; }
@@ -594,7 +593,7 @@
     transition: color 160ms var(--easing);
   }
   .methods a:hover { color: #fff; }
- 
+
   /* ---------- Footer ---------- */
   .footer { background: var(--brand-blue); }
   .footer__rule {
@@ -608,7 +607,7 @@
   .footer img { height: 24px; margin: 0 auto 14px; display: block; }
   .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
   .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
- 
+
   /* ---------- Dark mode (follows the visitor's system setting) ----------
      Midnight navy neutrals (desaturated night-blue, between slate and deep
      navy), banding rhythm preserved, contact + footer stay brand blue as
@@ -642,18 +641,18 @@
     .btn--secondary { background: rgba(255, 255, 255, 0.04); }
     .btn--secondary:hover { background: rgba(168, 192, 213, 0.08); border-color: var(--blue-200); }
     .faq-list summary::after { border-right-color: var(--orange-400); border-bottom-color: var(--orange-400); }
-    .hero__photo, .portrait { border-color: var(--blue-border); }
+    .hero__photo, .portrait, .about-portrait { border-color: var(--blue-border); }
   }
- 
+
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
 </style>
 </head>
- 
+
 <body>
- 
+
   <!-- Sticky nav -->
   <header class="nav">
     <div class="nav__row">
@@ -675,7 +674,7 @@
       </nav>
     </div>
   </header>
- 
+
   <!-- Hero -->
   <section class="band hero" id="top">
     <div class="inner">
@@ -700,7 +699,7 @@
       </div>
     </div>
   </section>
- 
+
   <!-- Services -->
   <section class="band" style="background: var(--bone);" id="services">
     <div class="zz">
@@ -737,7 +736,7 @@
       </div>
     </div>
   </section>
- 
+
   <!-- How it works -->
   <section class="band" style="background: var(--paper);" id="how">
     <div class="zz">
@@ -775,7 +774,7 @@
       </div>
     </div>
   </section>
- 
+
   <!-- FAQ -->
   <section class="band" style="background: var(--bone);" id="faq">
     <div class="zz">
@@ -811,24 +810,22 @@
       </div>
     </div>
   </section>
- 
+
   <!-- About -->
   <section class="band" style="background: var(--paper);" id="about">
     <div class="zz">
-      <div class="zz-grid flip">
-        <div class="zz-head">
-          <div class="portrait zz-portrait"><img src="tom-creagh-portrait.jpg" alt="Tom Creagh"></div>
+      <div class="about-grid">
+        <div class="about-portrait"><img src="tom-creagh-portrait.jpg" alt="Tom Creagh"></div>
+        <div class="about-text">
           <p class="eyebrow">About</p>
           <h2 class="h2" style="margin-bottom:6px;">Tom Creagh</h2>
           <p class="who__role">Lawyer · Founder of Creagh Law</p>
-        </div>
-        <div class="zz-body">
-          <p class="who__bio zz-bio">Creagh Law is Tom's off-hours practice — work he genuinely enjoys, built on experience from large-firm and in-house roles. Run lean and low on overhead, it handles business, technology, real estate, and personal estate matters with a straightforward aim: make serious legal work affordable, on a schedule and at a price that actually works.</p>
+          <p class="who__bio">Creagh Law is Tom's off-hours practice — work he genuinely enjoys, built on experience from large-firm and in-house roles. Run lean and low on overhead, it handles business, technology, real estate, and personal estate matters with a straightforward aim: make serious legal work affordable, on a schedule and at a price that actually works.</p>
         </div>
       </div>
     </div>
   </section>
- 
+
   <!-- Contact -->
   <section class="band contact" id="contact">
     <div class="zz">
@@ -850,7 +847,7 @@
       </div>
     </div>
   </section>
- 
+
   <!-- Footer -->
   <footer class="band footer">
     <div class="inner">
@@ -860,7 +857,7 @@
       The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
     </div>
   </footer>
- 
+
   <script>
     // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
     (function () {
@@ -900,7 +897,7 @@
         if (history.pushState) history.pushState(null, '', hash);
       });
     })();
- 
+
     // Mobile hamburger menu: toggle open/closed; close after tapping a link.
     (function () {
       var nav = document.querySelector('.nav');
@@ -920,6 +917,6 @@
       });
     })();
   </script>
- 
+
 </body>
 </html>
