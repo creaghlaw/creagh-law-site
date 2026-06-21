@@ -381,6 +381,51 @@
     .accent { white-space: normal; }
   }
  
+  /* ---------- Zigzag bands (wide screens) ----------
+     Each content section is a two-column band: a sticky heading panel and a
+     body panel. The heading alternates sides section to section (left, right,
+     left, right, left) to create the zigzag. Collapses to a centered single
+     column at <=860px (the phone/tween layout). */
+  .zz { max-width: 1100px; margin: 0 auto; padding: clamp(60px, 7vw, 84px) 24px; }
+  .zz-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: clamp(32px, 4.5vw, 56px);
+    align-items: start;
+  }
+  .zz-grid.flip { grid-template-columns: 1fr 300px; }
+  .zz-head {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+  }
+  .zz-grid.flip .zz-head { grid-column: 2; grid-row: 1; }
+  .zz-grid.flip .zz-body { grid-column: 1; grid-row: 1; }
+  .zz-head .eyebrow { margin-bottom: 14px; }
+  .zz-head .h2 { margin-bottom: 16px; }
+  .zz-head .zz-intro { font-size: 16px; line-height: 1.55; color: var(--ink-700); margin: 0; }
+  .zz-head .h2:last-child { margin-bottom: 0; }
+  /* About band specifics: portrait sits atop the heading panel; bio is larger */
+  .zz-portrait { margin-bottom: 22px; }
+  .zz-bio { font-size: 18px; line-height: 1.65; color: var(--ink-700); margin: 0; max-width: 62ch; }
+  /* Contact band is vertically centered and a touch more padded */
+  .contact .zz { padding-top: clamp(64px, 7vw, 84px); padding-bottom: clamp(40px, 5vw, 48px); }
+  .contact .zz-grid { align-items: center; }
+ 
+  @media (max-width: 860px) {
+    .zz { padding-left: 24px; padding-right: 24px; text-align: center; }
+    .zz-grid, .zz-grid.flip { grid-template-columns: 1fr; gap: 28px; }
+    .zz-head { position: static; top: auto; }
+    /* On collapse, force both panels back to single-column source order
+       (heading first, body second) — overriding the desktop grid-row/column
+       placement that the flip sections use. */
+    .zz-grid.flip .zz-head, .zz-grid .zz-head { grid-column: 1; grid-row: 1; }
+    .zz-grid.flip .zz-body, .zz-grid .zz-body { grid-column: 1; grid-row: 2; }
+    .zz-body { text-align: left; }
+    .zz-portrait { margin-left: auto; margin-right: auto; }
+    .zz-head .zz-intro { max-width: 60ch; margin-left: auto; margin-right: auto; }
+  }
+ 
   /* ---------- Services ---------- */
   .services-grid {
     display: grid;
@@ -600,27 +645,9 @@
     .hero__photo, .portrait { border-color: var(--blue-border); }
   }
  
-  /* ---------- Motion: gentle entrance as sections scroll in ----------
-     Elements tagged .reveal start slightly lowered + transparent, then ease
-     into place when they enter the viewport (class added by JS). Purely
-     additive — if JS doesn't run, .reveal-in is applied immediately so
-     nothing is ever stuck hidden. All of this is disabled under
-     prefers-reduced-motion (below). */
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 620ms var(--easing), transform 620ms var(--easing);
-    will-change: opacity, transform;
-  }
-  .reveal.reveal-in {
-    opacity: 1;
-    transform: none;
-  }
- 
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -676,10 +703,14 @@
  
   <!-- Services -->
   <section class="band" style="background: var(--bone);" id="services">
-    <div class="inner reveal">
-      <p class="eyebrow">Practice areas</p>
-      <h2 class="h2">What we do.</h2>
-      <p class="lead">Experienced, hands-on counsel across a focused set of practice areas — at affordable rates, on a schedule that fits around your week.</p>
+    <div class="zz">
+      <div class="zz-grid">
+        <div class="zz-head">
+          <p class="eyebrow">Practice areas</p>
+          <h2 class="h2">What we do.</h2>
+          <p class="zz-intro">Experienced, hands-on counsel across a focused set of practice areas — at affordable rates, on a schedule that fits around your week.</p>
+        </div>
+        <div class="zz-body">
       <div class="services-grid">
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
@@ -702,15 +733,21 @@
           <p>Wills, powers of attorney, advance directives, and guardianship appointments.</p>
         </div>
       </div>
+        </div>
+      </div>
     </div>
   </section>
  
   <!-- How it works -->
   <section class="band" style="background: var(--paper);" id="how">
-    <div class="inner reveal">
-      <p class="eyebrow">How we work</p>
-      <h2 class="h2">Three things you can count on.</h2>
-      <p class="lead">A small practice, run on a few core principles: timing, cost, and clarity.</p>
+    <div class="zz">
+      <div class="zz-grid flip">
+        <div class="zz-head">
+          <p class="eyebrow">How we work</p>
+          <h2 class="h2">Three things you can count on.</h2>
+          <p class="zz-intro">A small practice, run on a few core principles: timing, cost, and clarity.</p>
+        </div>
+        <div class="zz-body">
       <div class="principles">
         <div class="principle">
           <div class="principle__num">1</div>
@@ -734,14 +771,20 @@
           </div>
         </div>
       </div>
+        </div>
+      </div>
     </div>
   </section>
  
   <!-- FAQ -->
   <section class="band" style="background: var(--bone);" id="faq">
-    <div class="inner reveal">
-      <p class="eyebrow">FAQ</p>
-      <h2 class="h2">Common questions.</h2>
+    <div class="zz">
+      <div class="zz-grid">
+        <div class="zz-head">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="h2">Common questions.</h2>
+        </div>
+        <div class="zz-body">
       <div class="faq-list">
         <details open>
           <summary>When are you available?</summary>
@@ -764,19 +807,23 @@
           <p>Yes — a short intro call or email exchange so we can both decide if we're a fit. No invoice, no obligation.</p>
         </details>
       </div>
+        </div>
+      </div>
     </div>
   </section>
  
   <!-- About -->
   <section class="band" style="background: var(--paper);" id="about">
-    <div class="inner reveal">
-      <p class="eyebrow">About</p>
-      <h2 class="h2">Tom Creagh</h2>
-      <div class="about-card">
-        <div class="portrait"><img src="tom-creagh-portrait.jpg" alt="Tom Creagh"></div>
-        <div>
+    <div class="zz">
+      <div class="zz-grid flip">
+        <div class="zz-head">
+          <div class="portrait zz-portrait"><img src="tom-creagh-portrait.jpg" alt="Tom Creagh"></div>
+          <p class="eyebrow">About</p>
+          <h2 class="h2" style="margin-bottom:6px;">Tom Creagh</h2>
           <p class="who__role">Lawyer · Founder of Creagh Law</p>
-          <p class="who__bio">Creagh Law is Tom's off-hours practice — work he genuinely enjoys, built on experience from large-firm and in-house roles. Run lean and low on overhead, it handles business, technology, real estate, and personal estate matters with a straightforward aim: make serious legal work affordable, on a schedule and at a price that actually works.</p>
+        </div>
+        <div class="zz-body">
+          <p class="who__bio zz-bio">Creagh Law is Tom's off-hours practice — work he genuinely enjoys, built on experience from large-firm and in-house roles. Run lean and low on overhead, it handles business, technology, real estate, and personal estate matters with a straightforward aim: make serious legal work affordable, on a schedule and at a price that actually works.</p>
         </div>
       </div>
     </div>
@@ -784,16 +831,22 @@
  
   <!-- Contact -->
   <section class="band contact" id="contact">
-    <div class="inner reveal">
-      <p class="eyebrow">Ready when you are</p>
-      <h2 class="h2">Let's talk.</h2>
-      <p class="lead">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
-      <div class="cta-row">
-        <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
-      </div>
-      <div class="methods">
-        <div>Practising in New Brunswick · evenings and weekends</div>
-        <div>Replies within 24 hours</div>
+    <div class="zz">
+      <div class="zz-grid">
+        <div class="zz-head">
+          <p class="eyebrow">Ready when you are</p>
+          <h2 class="h2">Let's talk.</h2>
+        </div>
+        <div class="zz-body">
+          <p class="lead" style="margin-bottom:26px;">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
+          <div class="cta-row">
+            <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
+          </div>
+          <div class="methods">
+            <div>Practising in New Brunswick · evenings and weekends</div>
+            <div>Replies within 24 hours</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -809,58 +862,6 @@
   </footer>
  
   <script>
-    // Gentle entrance: sections fade-and-rise as they scroll into view.
-    // Sections already visible at load are shown immediately (no animation —
-    // you can't watch motion you're already looking at). Only sections that
-    // were below the fold animate when you scroll down to them. If
-    // IntersectionObserver is unavailable, everything shows immediately.
-    (function () {
-      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-      if (!('IntersectionObserver' in window) || !els.length) {
-        els.forEach(function (el) { el.classList.add('reveal-in'); });
-        return;
-      }
- 
-      // Anything on screen RIGHT NOW (at load) is revealed instantly, with the
-      // transition suppressed so it doesn't fade for content the visitor is
-      // already looking at. Using the full viewport height (not a fraction)
-      // matches the observer's own "is it intersecting" test, so no element
-      // can fall through the crack and animate while off-screen at the top.
-      var vh = window.innerHeight || document.documentElement.clientHeight;
-      els.forEach(function (el) {
-        var top = el.getBoundingClientRect().top;
-        if (top < vh) {                   // any part on screen at load
-          el.style.transition = 'none';
-          el.classList.add('reveal-in');
-          el.dataset.revealedAtLoad = '1';
-        }
-      });
-      // Restore transitions on the next frame for the ones we snapped in.
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          els.forEach(function (el) {
-            if (el.dataset.revealedAtLoad) { el.style.transition = ''; }
-          });
-        });
-      });
- 
-      // Observe the rest; they animate when scrolled into view. The negative
-      // bottom margin means the trigger fires once the section has risen a
-      // good way up into the viewport, so the motion is actually witnessed.
-      var io = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('reveal-in');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });
- 
-      els.forEach(function (el) {
-        if (!el.dataset.revealedAtLoad) { io.observe(el); }
-      });
-    })();
- 
     // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
     (function () {
       var DURATION = 650;
