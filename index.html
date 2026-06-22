@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Creagh Law — New Brunswick Lawyer | Business, Real Estate &amp; Wills</title>
 <meta name="description" content="Creagh Law is the off-hours practice of Tom Creagh, a lawyer with large-firm and in-house experience — business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.">
-
+ 
 <!-- Open Graph / link previews (used when the URL is shared in iMessage, email, LinkedIn, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creagh Law — Counsel that meets you outside business hours">
@@ -13,15 +13,15 @@
 <meta property="og:url" content="https://creagh.law">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
 <meta name="twitter:card" content="summary_large_image">
-
+ 
 <!-- Favicon (brand mark — lives alongside index.html in the site repo) -->
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+ 
 <!-- Browser chrome color per theme (address bar on mobile, etc.) -->
 <meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D1620" media="(prefers-color-scheme: dark)">
-
+ 
 <!-- Structured data (helps search engines understand the practice; invisible to visitors) -->
 <script type="application/ld+json">
 {
@@ -57,7 +57,7 @@
   "availableLanguage": "English"
 }
 </script>
-
+ 
 <!-- Fonts (self-hosted in /fonts — no third-party CDN, loads reliably everywhere) -->
 <style>
   @font-face {
@@ -103,7 +103,7 @@
     src: url('fonts/figtree-600.woff2') format('woff2');
   }
 </style>
-
+ 
 <style>
   :root {
     --brand-blue: #064059;
@@ -128,11 +128,11 @@
     --easing: cubic-bezier(0.22, 1, 0.36, 1);
     color-scheme: light dark; /* lets scrollbars & UA chrome adapt */
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   html { scroll-behavior: auto; } /* JS handles smooth scroll; this avoids double-easing */
-
+ 
   body {
     margin: 0;
     background: var(--paper);
@@ -142,9 +142,9 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
-
+ 
   a { color: inherit; }
-
+ 
   /* ---------- Sticky nav (desktop default) ---------- */
   .nav {
     position: sticky;
@@ -160,7 +160,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 18px 24px;
-    max-width: 640px;
+    max-width: var(--content-w);
     margin: 0 auto;
   }
   .nav__brand {
@@ -168,6 +168,23 @@
     line-height: 0;
   }
   .nav__brand img { height: 28px; display: block; }
+  /* On wide screens the wordmark leads the hero, then fades into the nav once
+     you scroll past it (toggled by .brand-shown via IntersectionObserver — see
+     the script at the bottom). At <=860px there is no hero wordmark, so the nav
+     keeps it visible at all times, preserving the no-clip behaviour on mobile. */
+  @media (min-width: 861px) {
+    .nav__brand {
+      opacity: 0;
+      transform: translateY(-4px);
+      pointer-events: none;
+      transition: opacity 260ms var(--easing), transform 260ms var(--easing);
+    }
+    .nav.brand-shown .nav__brand {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
   .nav__links { display: flex; gap: 20px; align-items: center; }
   .nav__links a {
     font-family: 'Urbanist', sans-serif;
@@ -178,7 +195,7 @@
     transition: color 160ms var(--easing);
   }
   .nav__links a:hover { color: var(--brand-blue); }
-
+ 
   /* Hamburger toggle — hidden on desktop, shown on mobile */
   .nav__toggle {
     display: none;
@@ -190,7 +207,7 @@
     line-height: 0;
   }
   .nav__toggle svg { width: 26px; height: 26px; display: block; }
-
+ 
   @media (max-width: 600px) {
     /* The bar stays put at the top at all times so the wordmark is always
        visible. Sticky + safe-area padding keeps the logo clear of the iOS
@@ -229,7 +246,7 @@
     }
     .nav__links a:first-child { border-top: 0; }
   }
-
+ 
   /* ---------- Shared band + inner ---------- */
   .band { width: 100%; }
   .inner {
@@ -262,7 +279,7 @@
     color: var(--ink-700);
     margin: 0 0 32px;
   }
-
+ 
   /* ---------- Buttons ---------- */
   .btn {
     display: inline-flex;
@@ -285,13 +302,15 @@
   .btn--secondary { background: var(--surface); color: var(--brand-blue); border-color: var(--blue-border); }
   .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-
+ 
   /* ---------- Hero ----------
      Wide (>860px): two columns — text left, rounded-square portrait right.
      Narrow (<=860px): centered, with a small rounded-square portrait above
      the headline. The wordmark is NOT in the hero (it lives in the nav at
      all times); the portrait is what leads the hero instead. */
   .hero { background: var(--paper); }
+  .hero__wordmark { display: inline-block; line-height: 0; margin: 0 0 26px; }
+  .hero__wordmark img { height: 36px; display: block; }
   .hero .inner {
     max-width: var(--content-w);
     padding-top: clamp(60px, 7vw, 88px);
@@ -355,10 +374,11 @@
   }
   .stamps span { display: inline-flex; align-items: center; gap: 6px; }
   .stamps svg { color: var(--brand-orange); }
-
+ 
   /* Narrow: collapse to a centered single column with a small portrait on top */
   @media (max-width: 860px) {
     .hero .inner { text-align: center; }
+    .hero__wordmark { display: none; }
     .hero__grid {
       grid-template-columns: 1fr;
       justify-items: center;
@@ -382,7 +402,7 @@
   @media (max-width: 420px) {
     .accent { white-space: normal; }
   }
-
+ 
   /* ---------- Zigzag bands (wide screens) ----------
      Each content section is a two-column band: a sticky heading panel and a
      body panel. The heading alternates sides section to section (left, right,
@@ -428,10 +448,7 @@
   .about-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
   .about-text { grid-column: 1; grid-row: 1; max-width: 60ch; }
   .about-text .who__bio { font-size: 16px; line-height: 1.7; color: var(--ink-700); margin: 14px 0 0; }
-  /* Contact band is vertically centered and a touch more padded */
-  .contact .zz { padding-top: clamp(64px, 7vw, 84px); padding-bottom: clamp(40px, 5vw, 48px); }
-  .contact .zz-grid { align-items: center; }
-
+ 
   @media (max-width: 860px) {
     .zz { padding-left: 24px; padding-right: 24px; text-align: center; }
     .zz-grid, .zz-grid.flip { grid-template-columns: 1fr; gap: 28px; }
@@ -449,7 +466,7 @@
     .about-text { grid-column: 1; grid-row: 2; max-width: 60ch; }
     .about-text .who__bio { text-align: left; }
   }
-
+ 
   /* ---------- Services ---------- */
   .services-grid {
     display: grid;
@@ -489,7 +506,7 @@
   }
   .service p { font-size: 14px; line-height: 1.5; color: var(--ink-700); margin: 0; }
   @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
-
+ 
   /* ---------- How it works ---------- */
   .principles { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 8px; }
   .principle {
@@ -522,7 +539,7 @@
     margin: 0 0 4px;
   }
   .principle p { font-size: 14.5px; line-height: 1.55; color: var(--ink-700); margin: 0; }
-
+ 
   /* ---------- FAQ ---------- */
   .faq-list { display: flex; flex-direction: column; gap: 8px; text-align: left; margin-top: 8px; }
   .faq-list details {
@@ -560,7 +577,7 @@
   }
   .faq-list details[open] summary::after { transform: rotate(-135deg); margin-bottom: 0; margin-top: 4px; }
   .faq-list details p { padding: 0 20px 18px; margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-700); }
-
+ 
   /* ---------- About (see .about-grid above for layout) ---------- */
   .who__role {
     font-family: 'Urbanist', sans-serif;
@@ -571,29 +588,22 @@
     margin: 0 0 14px;
   }
   .who__bio { font-size: 16px; line-height: 1.7; color: var(--ink-700); margin: 0; }
-
-  /* ---------- Contact ---------- */
+ 
+  /* ---------- Contact ----------
+     A single page-centered call to action that flows into the footer (same
+     blue). Deliberately OFF the zigzag grid: the closing CTA resolves the
+     alternating bands above, centered to the page like the footer below it. */
   .contact { background: var(--brand-blue); }
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: clamp(64px, 7.5vw, 92px) 24px clamp(44px, 5vw, 56px);
+    text-align: center;
+  }
   .contact .eyebrow { color: var(--orange-200); }
-  .contact .h2 { color: #fff; }
-  .contact .lead { color: rgba(255, 255, 255, 0.82); margin-left: auto; margin-right: auto; max-width: 520px; }
-  .methods {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 28px;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .methods a {
-    color: var(--orange-200);
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 1px;
-    text-decoration: none;
-    transition: color 160ms var(--easing);
-  }
-  .methods a:hover { color: #fff; }
-
+  .contact .h2 { color: #fff; margin-bottom: 16px; }
+  .contact .lead { color: rgba(255, 255, 255, 0.82); max-width: 480px; margin: 0 auto 30px; }
+ 
   /* ---------- Footer ---------- */
   .footer { background: var(--brand-blue); }
   .footer__rule {
@@ -605,9 +615,20 @@
   }
   .footer .inner { padding: 28px 24px 32px; color: rgba(255, 255, 255, 0.55); }
   .footer img { height: 24px; margin: 0 auto 14px; display: block; }
+  .footer__availability {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 16px;
+  }
   .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
   .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
-
+  .footer__links { font-size: 12px; margin: 12px 0 0; }
+  .footer__links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+  .footer__links a:hover { color: var(--orange-200); }
+ 
   /* ---------- Dark mode (follows the visitor's system setting) ----------
      Midnight navy neutrals (desaturated night-blue, between slate and deep
      navy), banding rhythm preserved, contact + footer stay brand blue as
@@ -643,16 +664,16 @@
     .faq-list summary::after { border-right-color: var(--orange-400); border-bottom-color: var(--orange-400); }
     .hero__photo, .portrait, .about-portrait { border-color: var(--blue-border); }
   }
-
+ 
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
 </style>
 </head>
-
+ 
 <body>
-
+ 
   <!-- Sticky nav -->
   <header class="nav">
     <div class="nav__row">
@@ -674,12 +695,18 @@
       </nav>
     </div>
   </header>
-
+ 
   <!-- Hero -->
   <section class="band hero" id="top">
     <div class="inner">
       <div class="hero__grid">
         <div class="hero__text">
+          <a class="hero__wordmark" href="#top" aria-label="creagh.law — home">
+            <picture>
+              <source srcset="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" media="(prefers-color-scheme: dark)">
+              <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+            </picture>
+          </a>
           <div class="hero__divider" aria-hidden="true"></div>
           <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
           <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
@@ -699,7 +726,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Services -->
   <section class="band" style="background: var(--bone);" id="services">
     <div class="zz">
@@ -736,7 +763,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- How it works -->
   <section class="band" style="background: var(--paper);" id="how">
     <div class="zz">
@@ -774,7 +801,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- FAQ -->
   <section class="band" style="background: var(--bone);" id="faq">
     <div class="zz">
@@ -810,7 +837,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- About -->
   <section class="band" style="background: var(--paper);" id="about">
     <div class="zz">
@@ -825,39 +852,31 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Contact -->
   <section class="band contact" id="contact">
-    <div class="zz">
-      <div class="zz-grid">
-        <div class="zz-head">
-          <p class="eyebrow">Ready when you are</p>
-          <h2 class="h2">Let's talk.</h2>
-        </div>
-        <div class="zz-body">
-          <p class="lead" style="margin-bottom:26px;">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
-          <div class="cta-row">
-            <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
-          </div>
-          <div class="methods">
-            <div>Practising in New Brunswick · evenings and weekends</div>
-            <div>Replies within 24 hours</div>
-          </div>
-        </div>
+    <div class="contact-inner">
+      <p class="eyebrow">Ready when you are</p>
+      <h2 class="h2">Let's talk.</h2>
+      <p class="lead">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
+      <div class="cta-row">
+        <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
       </div>
     </div>
   </section>
-
+ 
   <!-- Footer -->
   <footer class="band footer">
     <div class="inner">
       <div class="footer__rule" aria-hidden="true"></div>
       <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
-      <p class="legal"><strong>© 2026 Creagh Law</strong> · Practising in New Brunswick<br>
+      <p class="footer__availability">Practising in New Brunswick · Evenings &amp; weekends · Replies within 24 hours</p>
+      <p class="legal"><strong>© 2026 Creagh Law</strong><br>
       The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
+      <p class="footer__links"><a href="/privacy.html">Privacy Policy</a></p>
     </div>
   </footer>
-
+ 
   <script>
     // Smooth in-page scrolling for anchor links (~650ms, ease-out). Respects reduced-motion.
     (function () {
@@ -897,7 +916,7 @@
         if (history.pushState) history.pushState(null, '', hash);
       });
     })();
-
+ 
     // Mobile hamburger menu: toggle open/closed; close after tapping a link.
     (function () {
       var nav = document.querySelector('.nav');
@@ -916,7 +935,25 @@
         if (e.target.closest('a')) setOpen(false);
       });
     })();
+ 
+    // Hero wordmark -> nav wordmark cross-fade (wide screens).
+    // While the hero wordmark is on screen, the nav wordmark stays hidden; once
+    // the hero wordmark scrolls up under the sticky bar, the nav one fades in
+    // (and back out on the way up). IntersectionObserver keeps this off the
+    // main-thread scroll path. On <=860px the nav wordmark is always visible via
+    // CSS, so toggling .brand-shown there is harmless.
+    (function () {
+      var nav = document.querySelector('.nav');
+      var heroMark = document.querySelector('.hero__wordmark');
+      if (!nav || !heroMark) return;
+      if (!('IntersectionObserver' in window)) { nav.classList.add('brand-shown'); return; }
+      var navH = Math.round(nav.getBoundingClientRect().height) || 64;
+      var io = new IntersectionObserver(function (entries) {
+        nav.classList.toggle('brand-shown', !entries[0].isIntersecting);
+      }, { rootMargin: (-navH - 4) + 'px 0px 0px 0px', threshold: 0 });
+      io.observe(heroMark);
+    })();
   </script>
-
+ 
 </body>
 </html>
