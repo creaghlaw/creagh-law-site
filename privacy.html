@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy — Creagh Law</title>
+<meta name="description" content="How Creagh Law's website handles personal information, in plain language.">
+<meta name="robots" content="all">
+
+<!-- Favicon (brand mark — lives alongside index.html in the site repo) -->
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Browser chrome color per theme -->
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1620" media="(prefers-color-scheme: dark)">
+
+<style>
+  @font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('fonts/urbanist-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('fonts/urbanist-600.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('fonts/urbanist-700.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/figtree-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('fonts/figtree-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Figtree';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('fonts/figtree-600.woff2') format('woff2');
+  }
+</style>
+
+<style>
+  :root {
+    --brand-blue: #064059;
+    --brand-orange: #E57520;
+    --orange-dark: #C7621A;
+    --orange-200: #F1BC85;
+    --paper: #FBFAF7;
+    --bone: #F4F2EC;
+    --ink-900: #0E1518;
+    --ink-700: #2A3438;
+    --ink-500: #54616A;
+    --ink-100: #DDE1E4;
+    --border-warm: #E9E6DC;
+    --blue-tint: #EEF3F8;
+    --blue-border: #A8C0D5;
+    --blue-200: #A8C0D5;
+    --orange-400: #E98935;
+    --surface: #ffffff;
+    --nav-bg: rgba(251, 250, 247, 0.94);
+    --content-w: 1080px;
+    --easing: cubic-bezier(0.22, 1, 0.36, 1);
+    color-scheme: light dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink-700);
+    font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand-blue); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--orange-dark); }
+
+  /* ---------- Nav (matches the homepage) ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border-warm);
+  }
+  .nav__row {
+    max-width: var(--content-w);
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav__brand { display: inline-block; line-height: 0; }
+  .nav__brand img { height: 28px; display: block; }
+  .nav__back {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink-700);
+    text-decoration: none;
+  }
+  .nav__back:hover { color: var(--brand-blue); }
+
+  @media (max-width: 600px) {
+    .nav { padding-top: env(safe-area-inset-top, 0px); }
+    .nav__row { padding: 16px 22px; }
+  }
+
+  /* ---------- Policy content ---------- */
+  main { max-width: 720px; margin: 0 auto; padding: clamp(48px, 7vw, 80px) 24px clamp(64px, 8vw, 96px); }
+  .eyebrow {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink-900);
+    margin: 0 0 8px;
+  }
+  .effective { font-size: 14px; color: var(--ink-500); margin: 0 0 36px; }
+  h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--ink-900);
+    margin: 32px 0 8px;
+  }
+  p { margin: 0 0 14px; max-width: 64ch; }
+  .lede { font-size: 17px; color: var(--ink-700); margin-bottom: 28px; }
+  .divider { width: 48px; height: 2px; background: var(--brand-orange); border-radius: 2px; margin: 0 0 28px; }
+  .fineprint { font-size: 13px; color: var(--ink-500); margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border-warm); }
+
+  /* ---------- Footer (matches the homepage) ---------- */
+  .footer { background: var(--brand-blue); }
+  .footer__rule { width: 48px; height: 2px; background: var(--brand-orange); border-radius: 2px; margin: 0 auto 22px; }
+  .footer__inner { max-width: var(--content-w); margin: 0 auto; padding: 28px 24px 32px; color: rgba(255, 255, 255, 0.55); text-align: center; }
+  .footer img { height: 24px; margin: 0 auto 14px; display: block; }
+  .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto 12px; }
+  .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+  .footer__links { font-size: 12px; }
+  .footer__links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+  .footer__links a:hover { color: var(--orange-200); }
+  .footer__links span { color: rgba(255, 255, 255, 0.3); margin: 0 8px; }
+
+  /* ---------- Dark mode (matches the homepage) ---------- */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0D1620;
+      --bone: #131E2A;
+      --surface: #182836;
+      --border-warm: #243747;
+      --ink-900: #ECF1F5;
+      --ink-700: #BEC9D3;
+      --ink-500: #8996A2;
+      --ink-100: #263A49;
+      --blue-tint: #153146;
+      --blue-border: rgba(168, 192, 213, 0.4);
+      --nav-bg: rgba(11, 19, 28, 0.92);
+    }
+    a { color: var(--blue-200); }
+    a:hover { color: #fff; }
+    .eyebrow { color: var(--orange-400); }
+    .divider, .footer__rule { background: var(--orange-400); }
+    .nav__back:hover { color: var(--blue-200); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="nav__row">
+      <a class="nav__brand" href="/" aria-label="Creagh Law home">
+        <picture>
+          <source srcset="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" media="(prefers-color-scheme: dark)">
+          <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
+        </picture>
+      </a>
+      <a class="nav__back" href="/">← Back to site</a>
+    </div>
+  </header>
+
+  <main>
+    <p class="eyebrow">Privacy</p>
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective June 21, 2026</p>
+    <div class="divider" aria-hidden="true"></div>
+
+    <p class="lede">Creagh Law respects your privacy. This page explains what information this website collects and how it is handled.</p>
+
+    <h2>What we collect</h2>
+    <p>If you email Tom Creagh using the address on this site, we receive your email address and whatever you choose to write. This website also uses Google Analytics, which collects standard technical information about visits — such as pages viewed, approximate location, browser type, and a truncated IP address — using cookies. Analytics data is aggregated and is not used to identify you personally.</p>
+
+    <h2>Why we collect it</h2>
+    <p>Email information is used only to respond to your inquiry. Analytics information is used only to understand how the site is used and to improve it.</p>
+
+    <h2>Who we share it with</h2>
+    <p>We do not sell your information or share it for advertising. Analytics data is processed by Google, which may store and process it on servers outside Canada, including in the United States. We share information only where required by law.</p>
+
+    <h2>How long we keep it</h2>
+    <p>Emails are kept as long as needed for the matter they relate to and our professional obligations. Analytics data is retained according to Google's settings (currently up to 14 months).</p>
+
+    <h2>Your choices and rights</h2>
+    <p>You can decline analytics cookies through your browser settings or a browser opt-out tool. You may ask what personal information we hold about you, request a correction, or ask that it be deleted, by contacting us below. We will respond within 30 days.</p>
+
+    <h2>Contact</h2>
+    <p>Tom Creagh is responsible for privacy questions and complaints. Reach him at <a href="mailto:tom@creagh.law">tom@creagh.law</a>. If you are not satisfied with our response, you may contact the Office of the Privacy Commissioner of Canada at <a href="https://www.priv.gc.ca" target="_blank" rel="noopener">priv.gc.ca</a>.</p>
+
+    <p class="fineprint">This site is operated from New Brunswick, Canada. We may update this policy from time to time; the effective date above reflects the most recent change.</p>
+  </main>
+
+  <!-- Footer (matches the homepage) -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__rule" aria-hidden="true"></div>
+      <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
+      <p class="legal"><strong>© 2026 Creagh Law</strong> · Practising in New Brunswick<br>
+      The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
+      <p class="footer__links"><a href="/">Home</a><span>·</span><a href="/privacy.html">Privacy</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
