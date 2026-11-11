@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Creagh Law — New Brunswick Lawyer | Business, Real Estate &amp; Wills</title>
-<meta name="description" content="Creagh Law is the off-hours practice of Tom Creagh, a lawyer with large-firm and in-house experience — business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.">
+<title>Creagh Law — Fredericton-Area Lawyer | Business, Real Estate &amp; Wills</title>
+<meta name="description" content="Creagh Law is the evening-and-weekend practice of Tom Creagh, a New Brunswick lawyer based in Hanwell and serving Fredericton — business, technology, real estate, and estate planning, billed hourly or by flat fee.">
+<link rel="canonical" href="https://www.creagh.law/">
  
 <!-- Open Graph / link previews (used when the URL is shared in iMessage, email, LinkedIn, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creagh Law — Counsel that meets you outside business hours">
-<meta property="og:description" content="An off-hours legal practice built on large-firm and in-house experience — business, technology, real estate, and personal estate matters at affordable rates or flat fees.">
-<meta property="og:url" content="https://creagh.law">
+<meta property="og:description" content="An evening-and-weekend legal practice in the Fredericton area, built on large-firm and in-house experience — business, technology, real estate, and estate planning.">
+<meta property="og:url" content="https://www.creagh.law/">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png">
 <meta name="twitter:card" content="summary_large_image">
  
@@ -28,30 +29,45 @@
   "@context": "https://schema.org",
   "@type": "LegalService",
   "name": "Creagh Law",
-  "description": "The off-hours legal practice of Tom Creagh, a lawyer with large-firm and in-house experience, handling business, technology, real estate, and personal estate matters in New Brunswick.",
-  "url": "https://www.creagh.law",
+  "description": "The evening-and-weekend legal practice of Tom Creagh, a New Brunswick lawyer based in Hanwell and serving Fredericton, handling business, technology, real estate, and estate planning matters.",
+  "url": "https://www.creagh.law/",
   "logo": "https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg",
   "image": "https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/wordmark-signature.png",
-  "priceRange": "Affordable hourly rates or flat fees",
+  "priceRange": "Hourly or flat fee",
   "email": "tom@creagh.law",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hanwell",
+    "addressRegion": "NB",
+    "addressCountry": "CA"
+  },
   "founder": {
     "@type": "Person",
-    "name": "Tom Creagh"
+    "name": "Tom Creagh",
+    "jobTitle": "Lawyer",
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Law Society of New Brunswick"
+    },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "University of New Brunswick" },
+      { "@type": "CollegeOrUniversity", "name": "St. Thomas University" }
+    ]
   },
-  "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "New Brunswick, Canada"
-  },
+  "areaServed": [
+    { "@type": "City", "name": "Fredericton, New Brunswick" },
+    { "@type": "AdministrativeArea", "name": "New Brunswick, Canada" }
+  ],
   "knowsAbout": [
     "Business law",
     "Incorporation",
     "Startups",
-    "Mergers and acquisitions",
+    "Buying and selling a business",
     "Technology and software contracts",
     "Real estate law",
     "Buying and selling property",
     "Mortgages",
-    "Wills and estates",
+    "Wills and estate planning",
     "Powers of attorney"
   ],
   "availableLanguage": "English"
@@ -110,6 +126,8 @@
     --brand-orange: #E57520;
     --orange-dark: #C7621A;
     --orange-200: #F1BC85;
+    --orange-text: #AD5410;  /* text-safe orange: >=4.5:1 on paper/bone and under white button text */
+    --orange-text-hover: #964810;
     --paper: #FBFAF7;
     --bone: #F4F2EC;
     --ink-900: #0E1518;
@@ -207,6 +225,9 @@
     line-height: 0;
   }
   .nav__toggle svg { width: 26px; height: 26px; display: block; }
+  .nav__toggle .icon-close { display: none; }
+  .nav.is-open .nav__toggle .icon-open { display: none; }
+  .nav.is-open .nav__toggle .icon-close { display: block; }
  
   @media (max-width: 600px) {
     /* The bar stays put at the top at all times so the wordmark is always
@@ -261,7 +282,7 @@
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--brand-orange);
+    color: var(--orange-text);
     margin: 0 0 18px;
   }
   .h2 {
@@ -279,6 +300,9 @@
     color: var(--ink-700);
     margin: 0 0 32px;
   }
+  /* Balanced headings avoid one-word last lines ("on.", "hours.") on phones */
+  .hero h1, .h2, .service h3, .principle h3 { text-wrap: balance; }
+  .lead, .zz-intro, .who__bio { text-wrap: pretty; }
  
   /* ---------- Buttons ---------- */
   .btn {
@@ -297,8 +321,8 @@
     transition: background 160ms var(--easing), border-color 160ms var(--easing),
                 transform 160ms var(--easing), box-shadow 160ms var(--easing);
   }
-  .btn--accent { background: var(--brand-orange); color: #fff; }
-  .btn--accent:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(6, 64, 89, 0.07); }
+  .btn--accent { background: var(--orange-text); color: #fff; }
+  .btn--accent:hover { background: var(--orange-text-hover); transform: translateY(-1px); box-shadow: 0 2px 6px rgba(6, 64, 89, 0.07); }
   .btn--secondary { background: var(--surface); color: var(--brand-blue); border-color: var(--blue-border); }
   .btn--secondary:hover { background: var(--blue-tint); border-color: var(--brand-blue); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
@@ -401,6 +425,7 @@
   }
   @media (max-width: 420px) {
     .accent { white-space: normal; }
+    .stamps { flex-direction: column; align-items: center; gap: 8px; }
   }
  
   /* ---------- Zigzag bands (wide screens) ----------
@@ -448,6 +473,7 @@
   .about-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
   .about-text { grid-column: 1; grid-row: 1; max-width: 60ch; }
   .about-text .who__bio { font-size: 16px; line-height: 1.7; color: var(--ink-700); margin: 14px 0 0; }
+  .who__creds { list-style: none; padding: 0; margin: 18px 0 0; font-size: 14px; line-height: 1.7; color: var(--ink-500); }
  
   @media (max-width: 860px) {
     .zz { padding-left: 24px; padding-right: 24px; text-align: center; }
@@ -464,7 +490,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 28px; justify-items: center; text-align: center; }
     .about-portrait { grid-column: 1; grid-row: 1; }
     .about-text { grid-column: 1; grid-row: 2; max-width: 60ch; }
-    .about-text .who__bio { text-align: left; }
+    .about-text .who__bio, .about-text .who__creds { text-align: left; }
   }
  
   /* ---------- Services ---------- */
@@ -505,7 +531,14 @@
     margin: 0 0 6px;
   }
   .service p { font-size: 14px; line-height: 1.5; color: var(--ink-700); margin: 0; }
-  @media (max-width: 540px) { .services-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 540px) {
+    .services-grid { grid-template-columns: 1fr; gap: 10px; }
+    /* Phones: icon sits beside the heading so each card is roughly half as tall */
+    .service { display: grid; grid-template-columns: 38px 1fr; column-gap: 14px; align-items: center; padding: 18px; }
+    .service__icon { margin-bottom: 0; }
+    .service h3 { margin: 0; }
+    .service p { grid-column: 1 / -1; margin-top: 10px; }
+  }
  
   /* ---------- How it works ---------- */
   .principles { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 8px; }
@@ -603,9 +636,11 @@
   .contact .eyebrow { color: var(--orange-200); }
   .contact .h2 { color: #fff; margin-bottom: 16px; }
   .contact .lead { color: rgba(255, 255, 255, 0.82); max-width: 480px; margin: 0 auto 30px; }
+  .contact__email { margin: 18px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.82); }
+  .contact__email a { color: #fff; text-underline-offset: 3px; }
  
   /* ---------- Footer ---------- */
-  .footer { background: var(--brand-blue); }
+  .footer { background: var(--brand-blue); margin-top: -1px; } /* 1px overlap hides a hairline seam at fractional-pixel boundaries */
   .footer__rule {
     width: 64px;
     height: 1.5px;
@@ -622,6 +657,23 @@
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.82);
     margin: 0 0 16px;
+  }
+  .footer__contact {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 8px;
+  }
+  .footer__contact strong { color: #fff; font-weight: 600; }
+  .footer__contact a { text-underline-offset: 3px; }
+  /* Each item stays whole; the separator dot travels with the item after it, so no line ends in a stray dot */
+  .footer__contact span, .footer__availability span { display: inline-block; white-space: nowrap; }
+  .footer__contact span + span::before, .footer__availability span + span::before { content: "·"; margin: 0 0.5em; }
+  @media (max-width: 600px) {
+    /* Phones: one item per line, no separators */
+    .footer__contact span, .footer__availability span { display: block; }
+    .footer__contact span + span::before, .footer__availability span + span::before { content: none; }
   }
   .footer .legal { font-size: 12px; line-height: 1.6; max-width: 48ch; margin: 0 auto; }
   .footer .legal strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
@@ -650,6 +702,7 @@
       --nav-bg: rgba(11, 19, 28, 0.92);
     }
     .nav__links a:hover { color: var(--blue-200); }
+    .nav__toggle { color: var(--blue-200); }
     .eyebrow { color: var(--orange-400); }
     .contact .eyebrow { color: var(--orange-200); } /* small caps on blue: paler = more legible */
     .hero__divider, .footer__rule { background: var(--orange-400); }
@@ -658,7 +711,7 @@
     .service h3, .principle h3, .faq-list summary, .btn--secondary { color: var(--blue-200); }
     .service__icon { color: var(--blue-200); }
     .service:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); }
-    .btn--accent:hover { background: var(--orange-400); } /* hover lighter on dark */
+    .btn--accent:hover { background: #B85A12; } /* hover lighter on dark, still >=4.5:1 under white text */
     .btn--secondary { background: rgba(255, 255, 255, 0.04); }
     .btn--secondary:hover { background: rgba(168, 192, 213, 0.08); border-color: var(--blue-200); }
     .faq-list summary::after { border-right-color: var(--orange-400); border-bottom-color: var(--orange-400); }
@@ -683,18 +736,21 @@
           <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark.svg" alt="creagh.law">
         </picture>
       </a>
-      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <svg class="icon-open" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
       </button>
-      <nav class="nav__links" aria-label="Primary">
+      <nav class="nav__links" id="primary-nav" aria-label="Primary">
         <a href="#services">Services</a>
-        <a href="#how">How we work</a>
+        <a href="#how">How I work</a>
         <a href="#faq">FAQ</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
+ 
+  <main>
  
   <!-- Hero -->
   <section class="band hero" id="top">
@@ -709,13 +765,13 @@
           </a>
           <div class="hero__divider" aria-hidden="true"></div>
           <h1>Counsel that meets you <span class="accent">outside business hours.</span></h1>
-          <p class="lead">Tom Creagh pairs large-firm and in-house experience with an off-hours practice — handling business, technology, real estate, and personal estate matters at affordable hourly rates, or flat fees where they make sense.</p>
+          <p class="lead">I'm Tom Creagh — a lawyer with large-firm and in-house experience, helping people and companies with business, technology, real estate, and estate planning matters.</p>
           <div class="cta-row">
             <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
-            <a class="btn btn--secondary" href="#how">How we work</a>
+            <a class="btn btn--secondary" href="#how">How I work</a>
           </div>
           <div class="stamps">
-            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evenings and weekends</span>
+            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Evening and weekend meetings</span>
             <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Hourly or flat-fee</span>
             <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Straight answers</span>
           </div>
@@ -733,15 +789,15 @@
       <div class="zz-grid">
         <div class="zz-head">
           <p class="eyebrow">Practice areas</p>
-          <h2 class="h2">What we do.</h2>
-          <p class="zz-intro">Experienced, hands-on counsel across a focused set of practice areas — at affordable rates, on a schedule that fits around your week.</p>
+          <h2 class="h2">What I do.</h2>
+          <p class="zz-intro">Hands-on counsel across a focused set of practice areas, on a schedule that fits around your week.</p>
         </div>
         <div class="zz-body">
       <div class="services-grid">
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <h3>Business</h3>
-          <p>Incorporation, startups, contracts, corporate governance, and M&amp;A (buying or selling a business).</p>
+          <p>Incorporation, startups, contracts, corporate governance, and buying or selling a business.</p>
         </div>
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg></div>
@@ -755,7 +811,7 @@
         </div>
         <div class="service">
           <div class="service__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg></div>
-          <h3>Wills</h3>
+          <h3>Estate planning</h3>
           <p>Wills, powers of attorney, advance directives, and guardianship appointments.</p>
         </div>
       </div>
@@ -769,9 +825,9 @@
     <div class="zz">
       <div class="zz-grid flip">
         <div class="zz-head">
-          <p class="eyebrow">How we work</p>
-          <h2 class="h2">Three things you can count on.</h2>
-          <p class="zz-intro">A small practice, run on a few core principles: timing, cost, and clarity.</p>
+          <p class="eyebrow">How I work</p>
+          <h2 class="h2">Timing, cost, and clarity.</h2>
+          <p class="zz-intro">A small practice, run on three simple principles.</p>
         </div>
         <div class="zz-body">
       <div class="principles">
@@ -779,21 +835,21 @@
           <div class="principle__num">1</div>
           <div>
             <h3>After-hours, on purpose.</h3>
-            <p>Tom is an in-house lawyer during the week. Client meetings, drafting, and signings happen in evenings and on weekends — when you actually have time.</p>
+            <p>I'm an in-house lawyer during the week. Client meetings happen in evenings and on weekends — when you have time.</p>
           </div>
         </div>
         <div class="principle">
           <div class="principle__num">2</div>
           <div>
             <h3>Pricing that fits the matter.</h3>
-            <p>Affordable hourly rates for most work. Flat fees when the scope is clear up front and we both benefit from the certainty. Either way, you'll see the number before any work begins.</p>
+            <p>Hourly rates for most work. Flat fees when the scope is clear up front and we both benefit from the certainty. A written quote is available before any work begins.</p>
           </div>
         </div>
         <div class="principle">
           <div class="principle__num">3</div>
           <div>
             <h3>Clearly explained.</h3>
-            <p>Advice and documents in language you can actually act on — the reasoning made clear, the legal complexity handled without burying you in it.</p>
+            <p>Advice and documents in plain language you can act on — the reasoning made clear, without burying you in legal complexity.</p>
           </div>
         </div>
       </div>
@@ -821,10 +877,6 @@
           <p>Most matters are billed at an hourly rate, with flat fees when the scope is clear up front — and either way, you'll get the number in writing before any work begins. Rates stay affordable because the practice runs lean: heavy automation on the admin side keeps overhead low, and there's no expensive office to pay for. Those savings go to you, while the legal work itself stays hands-on and personal.</p>
         </details>
         <details>
-          <summary>Do you handle litigation?</summary>
-          <p>No. This is transactional and advisory work only. If your matter needs court representation, we'll happily connect you with counsel who can help.</p>
-        </details>
-        <details>
           <summary>Where do we meet?</summary>
           <p>Wherever's convenient for you. A lot can be handled by phone, email, or video, so we only meet in person when it's needed or beneficial — usually for signings. No big boardroom, but everyone gets a good pen to sign with.</p>
         </details>
@@ -846,8 +898,14 @@
         <div class="about-text">
           <p class="eyebrow">About</p>
           <h2 class="h2" style="margin-bottom:6px;">Tom Creagh</h2>
-          <p class="who__role">Lawyer · Founder of Creagh Law</p>
-          <p class="who__bio">Creagh Law is Tom's off-hours practice — work he genuinely enjoys, built on experience from large-firm and in-house roles. Run lean and low on overhead, it handles business, technology, real estate, and personal estate matters with a straightforward aim: make serious legal work affordable, on a schedule and at a price that actually works.</p>
+          <p class="who__role">Lawyer · Member, Law Society of New Brunswick</p>
+          <p class="who__bio">Creagh Law is my evening-and-weekend practice — work I enjoy, built on experience in large-firm and in-house roles. An MBA and a background in technology and startups shape how I approach business and technology work. Based in Hanwell, I work with clients in Fredericton and across New Brunswick, and I keep the practice lean so serious legal work stays affordable.</p>
+          <ul class="who__creds">
+            <li>Called to the New Brunswick Bar, 2021</li>
+            <li>JD, University of New Brunswick</li>
+            <li>MBA, University of New Brunswick</li>
+            <li>BA, St. Thomas University</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -858,21 +916,25 @@
     <div class="contact-inner">
       <p class="eyebrow">Ready when you are</p>
       <h2 class="h2">Let's talk.</h2>
-      <p class="lead">A short intro call or email exchange. We figure out if your matter's a fit, scope the work, and quote pricing — in writing, before anything starts.</p>
+      <p class="lead">Start with a short intro call or email exchange. We'll see whether your matter's a fit and scope the work. A written quote is available before anything starts.</p>
       <div class="cta-row">
         <a class="btn btn--accent" href="mailto:tom@creagh.law">Email Tom →</a>
       </div>
+      <p class="contact__email">Or write to <a href="mailto:tom@creagh.law">tom@creagh.law</a></p>
     </div>
   </section>
+ 
+  </main>
  
   <!-- Footer -->
   <footer class="band footer">
     <div class="inner">
       <div class="footer__rule" aria-hidden="true"></div>
       <img src="https://cdn.jsdelivr.net/gh/creaghlaw/brandingassets@main/creagh-law-wordmark-reversed.svg" alt="creagh.law">
-      <p class="footer__availability">Practising in New Brunswick · Evenings &amp; weekends · Replies within 24 hours</p>
+      <p class="footer__contact"><span><strong>Tom Creagh</strong>, Creagh Law</span><span>Hanwell, New Brunswick</span><span><a href="mailto:tom@creagh.law">tom@creagh.law</a></span></p>
+      <p class="footer__availability"><span>Member, Law Society of New Brunswick</span><span>Serving Fredericton and across NB</span><span>Evening &amp; weekend meetings</span><span>Usually replies within a day</span></p>
       <p class="legal"><strong>© 2026 Creagh Law</strong><br>
-      The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once we have agreed to act for you in writing.</p>
+      The information on this site is provided for general purposes only and is not legal advice. Contacting Creagh Law does not by itself create a solicitor-client relationship; that relationship begins only once I have agreed in writing to act for you.</p>
       <p class="footer__links"><a href="/privacy.html">Privacy Policy</a></p>
     </div>
   </footer>
